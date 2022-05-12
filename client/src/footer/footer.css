@@ -1,0 +1,14 @@
+footer{
+    background-color:  #212529;
+    color: white
+}
+
+#footer{
+    display:flex;
+}
+
+div.col1, div.col2, div.col3{
+    font-size:xx-large;
+    width: 30%;
+    margin: 10%;
+}
