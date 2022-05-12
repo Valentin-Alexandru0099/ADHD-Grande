@@ -4,12 +4,11 @@ div.index_page{
 }
 
 h1.title{
-    font-weight: 900;
-    font-style: italic;
-    font-family: URW Chancery L, cursive;
+    font-weight: 500;
     background-color: whitesmoke;
-    border:solid 10px;
+    border:solid 5px;
     margin-top: 1%;
+    padding: 1%;
 }
 
 div.workspace_descriptive {
@@ -38,8 +37,73 @@ div.workspace_descriptive {
     width: 60%;
     height: 600px;
     box-shadow: 10px 10px 100px orange;
+    margin-bottom:2.3%;
 }
 
 .learn-more{
 position: relative;
+}
+
+
+.influence_campaign_workspace{
+    display: flex;
+    justify-content: flex-start;
+
+
+}
+
+.influence_doante_workspace{
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.influence_campaign, .influence_donate{
+    border: solid;
+    font-size: xx-large;
+    padding: 1%;
+    background-color: whitesmoke;
+    margin-bottom: 10%;
+    width: 60%;
+    text-align: center;
+}
+
+
+.influence_campaign:hover , .influence_donate:hover{
+    box-shadow: 10px 10px 50px gray;
+    margin-bottom: 0.8%;
+    
+}
+
+.btn-redirect{
+padding: 2%;
+display: none;
+width: 50%;
+margin-left: 25%;
+}
+
+.btn-redirect:hover{
+    box-shadow: 10px 10px 25px gray;
+}
+
+.hide{
+    display: none;
+}
+
+.influence_donate:hover .hide{
+    display: block;
+}
+
+
+.influence_donate:hover .btn-redirect{
+    display: block;
+}
+
+
+.influence_campaign:hover .hide {
+    display: block;
+}
+
+.influence_campaign:hover .btn-redirect{
+    display: block;
 }
