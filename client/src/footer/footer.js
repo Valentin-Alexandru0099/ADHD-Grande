@@ -4,15 +4,14 @@ import './footer.css';
 function PageFooter(){
 const links = ["www.facebook.com", "www.pinterest.com", "www.twitter.com", "www.instagram.com"];
 const icons = ["fa fa-facebook","fa fa-twitter", "fa fa-instagram", "fa fa-pinterest"];
-
+const about_us = ["/about_us#our_platform", "/about_us#our_developers", "/about_us#our_mission"];
+const names = ["Our Platform", "Our Developers", "Our Mission"];
     return (
     <footer>
         <Container id="footer">
             <div className="col1">
-                About:
-                <p>our platform</p>
-                <p>our developers</p>
-                <p>our mission</p>
+                About:<br/>
+                {about_us.map((about, index) => <p><a href={about} key={index}>{names[index]}</a></p>)}
             </div>
             <div className="col2">
                 Contact:<br/>

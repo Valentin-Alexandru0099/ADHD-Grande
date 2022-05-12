@@ -7,7 +7,7 @@ function PageNavBar(){
       <div>
     <Navbar sticky="top" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <Image src={me} width='20%'>
           </Image>
           ADHD GRANDE
@@ -15,8 +15,8 @@ function PageNavBar(){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#">Campaigns</Nav.Link>
-            <Nav.Link href="#">About Us</Nav.Link>
+            <Nav.Link href="/campaigns">Campaigns</Nav.Link>
+            <Nav.Link href="/about_us">About Us</Nav.Link>
             <Form className="d-flex">
                   <FormControl
                     type="search"

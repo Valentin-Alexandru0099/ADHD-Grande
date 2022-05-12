@@ -19,8 +19,14 @@ div.col1, div.col2, div.col3{
     font-size: medium;
 }
 
-div.col1 > p{
+div.col1 >p>a{
     font-size: medium;
+    text-decoration: none;
+    color: white;
+}
+
+div.col1 >p>a:hover{
+  opacity: 0.5;
 }
 
 .fa {
