@@ -4,6 +4,7 @@ import me from '../images/img.png';
 
 function PageNavBar(){
     return (
+      <div>
     <Navbar sticky="top" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="#home">
@@ -27,7 +28,8 @@ function PageNavBar(){
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar>);
+    </Navbar>
+    </div>);
     };
 
     export default PageNavBar;
