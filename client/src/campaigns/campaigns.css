@@ -1,0 +1,9 @@
+.campaigns_workspace{
+    display: flex;
+    margin: 5%;
+}
+
+div.card{
+    text-align: center;
+    width: 70%;
+}

@@ -2,12 +2,12 @@ import { Container } from "react-bootstrap";
 import './footer.css';
 
 function PageFooter(){
-const links = ["www.facebook.com", "www.pinterest.com", "www.twitter.com", "www.instagram.com"];
+const links = ["https://www.facebook.com", "https://www.pinterest.com", "https://www.twitter.com", "https://www.instagram.com"];
 const icons = ["fa fa-facebook","fa fa-twitter", "fa fa-instagram", "fa fa-pinterest"];
 const about_us = ["/about_us#our_platform", "/about_us#our_developers", "/about_us#our_mission"];
 const names = ["Our Platform", "Our Developers", "Our Mission"];
     return (
-    <footer>
+    <footer className="footer">
         <Container id="footer">
             <div className="col1">
                 About:<br/>
