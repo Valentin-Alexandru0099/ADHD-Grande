@@ -9,4 +9,8 @@ public class CampaignService {
 
     @Autowired
     private CampaignRepository campaignRepository;
+
+    public Long getCount(){
+        return campaignRepository.count();
+    }
 }

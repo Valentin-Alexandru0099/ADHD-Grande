@@ -9,4 +9,8 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public Long getCount(){
+        return  userRepository.count();
+    }
 }
