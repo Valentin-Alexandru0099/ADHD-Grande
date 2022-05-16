@@ -59,7 +59,7 @@ position: relative;
 
 }
 
-.influence_campaign, .influence_donate{
+.influence_campaign, .influence_donate, .information{
     border: solid;
     font-size: xx-large;
     padding: 1%;

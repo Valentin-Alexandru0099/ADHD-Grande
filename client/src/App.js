@@ -6,7 +6,6 @@ import Home from './home/home';
 import About from "./about/about";
 import Campaigns from "./campaigns/campaigns";
 
-
 function App() {
   return (
       <div className="App">
