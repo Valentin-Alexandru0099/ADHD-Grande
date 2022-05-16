@@ -59,7 +59,7 @@ position: relative;
 
 }
 
-.influence_campaign, .influence_donate, .information{
+.influence_campaign, .influence_donate{
     border: solid;
     font-size: xx-large;
     padding: 1%;
@@ -108,4 +108,26 @@ margin-left: 25%;
 
 .influence_campaign:hover .btn-redirect{
     display: block;
+}
+
+.info-workspace{
+    display: flex;
+    background-color: whitesmoke;
+    border :solid 1px;
+    border-radius: 10%;
+    padding: 1%;
+    justify-content: space-around;
+    margin-bottom: 1%;
+    font-size: xx-large;
+
+}
+
+.information{
+    text-align: center;
+}
+
+.info-num{
+    border-radius: 50%;
+    width: 50%;
+    margin-left: 25%;
 }

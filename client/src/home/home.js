@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 
 function Home() {
-const BASE_API_URL = "http://localhost:8080/api/";
+  const BASE_API_URL = "http://localhost:8080/api/";
 
   AOS.init();
   let navigate = useNavigate();
@@ -26,7 +26,7 @@ const BASE_API_URL = "http://localhost:8080/api/";
     await axios(BASE_API_URL + routeName + "/count")
       .then((response) => {
         setData(response.data);
-       });
+      });
   };
 
   getCount("campaign");
@@ -67,8 +67,20 @@ const BASE_API_URL = "http://localhost:8080/api/";
       </div>
       <div className='info-workspace'>
         <div data-aos="flip-up" data-aos-duration="1200" className="information">
-            {accountsCount}
-            {campaignsCount}
+          <p>
+            Total Accounts on site:
+          </p>
+          <p className='info-num'>
+          {accountsCount}
+          </p>
+        </div>
+        <div data-aos="flip-up" data-aos-duration="2000" className="information">
+          <p>
+            Total Campaigns on site:
+          </p>
+          <p className='info-num'>
+          {campaignsCount}
+          </p>
         </div>
       </div>
     </Container>
