@@ -3,7 +3,7 @@ import './footer.css';
 
 function PageFooter(){
 const links = ["https://www.facebook.com", "https://www.pinterest.com", "https://www.twitter.com", "https://www.instagram.com"];
-const icons = ["fa fa-facebook","fa fa-twitter", "fa fa-instagram", "fa fa-pinterest"];
+const icons = ["fa fa-facebook","fa fa-pinterest", "fa fa-twitter", "fa fa-instagram"];
 const about_us = ["/about_us#our_platform", "/about_us#our_developers", "/about_us#our_mission"];
 const names = ["Our Platform", "Our Developers", "Our Mission"];
     return (

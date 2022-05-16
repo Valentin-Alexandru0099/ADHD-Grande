@@ -8,13 +8,20 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
 AOS.init();
 let navigate = useNavigate();
+
+function redirectTo(routeName){
+  navigate(routeName);
+  window.scroll(0,0);
+}
+
+
   return (
     <Container>
         <div className="index_page">
           <h1 data-aos="fade-in"  data-aos-duration="1200"className="title">&nbsp;ADHD GRANDE Crowdfunding&nbsp;</h1>
         </div>
         <div data-aos="fade-left" data-aos-duration="1200" className='descriptive_div'>
-          <div className='workspace_descriptive' onClick={() => navigate('/about_us')} >
+          <div className='workspace_descriptive' onClick={() => redirectTo("/about_us")} >
             The Best Platform For Crowdfunding Of Any Kind.
           </div>
         </div>
@@ -22,7 +29,7 @@ let navigate = useNavigate();
         <div data-aos="fade-up-right" data-aos-duration="1200" className="influence_campaign">
             <p>Intereseted in opening a campaign?</p>
             <p className='hide'>Open one NOW:</p>
-            <Button className='btn-redirect' variant='dark' onClick={() => navigate('/open_campaign')}>
+            <Button className='btn-redirect' variant='dark' onClick={() => redirectTo("/new_campaign")}>
               <strong>New Campaign</strong>
             </Button>
         </div>
@@ -31,7 +38,7 @@ let navigate = useNavigate();
         <div data-aos="fade-up-left" data-aos-duration="1200" className="influence_donate">
             <p>Or do <strong>YOU</strong> want to <strong>DONATE</strong> to a <strong>CAMPAIGN</strong> ?</p>
             <p className='hide'>Do <strong>IT</strong> right <strong>NOW</strong>:</p>
-            <Button className='btn-redirect' variant='dark' onClick={() => navigate('/campaigns')}>
+            <Button className='btn-redirect' variant='dark' onClick={() => redirectTo("/campaigns")}>
               <strong>Campaigns</strong>
           </Button>
         </div>
