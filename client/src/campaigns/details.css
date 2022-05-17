@@ -1,0 +1,45 @@
+div.container{
+    display: flex;
+    justify-content: space-between;
+    margin: 1%;
+}
+
+
+div.campaign-payment{
+    background-color: whitesmoke;
+    padding: 1%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 15%;
+}
+
+div.campaign-payment h1,button,h4{
+    margin-bottom: 10% ;
+}
+
+
+div.form-check:hover{
+    box-shadow: 10px 10px 100px black;
+    background-color: gray;
+    zoom: 110%;
+    border-radius: 10%;
+}
+
+
+div.form-check:hover label{
+    color:aqua;
+    zoom: 110%;
+}
+
+div.payment-history{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.history.card{
+    margin-bottom: 5%;
+    
+}
+

@@ -26,23 +26,24 @@ function Campaigns() {
     let navigate = useNavigate();
 
     function redirectTo(){
-        navigate("/campaign/"+1)
+        navigate("campaign/1")
         window.scroll(0,0);
     }
 
     return (
         <Container>
             <div className="campaigns_workspace">
-                <img className="card_image" width="31%" height="10%" src={card_image}></img>
-                <Card>
+                <img className="card_image" width="35%" src={card_image}></img>
+                <Card className="campaign-card">
                     <Card.Header>
+                        Help Alex treat his Obsession with this name...
                         Help Alex treat his Obsession with this name...
                     </Card.Header>
                     <Card.Body>
                         <Card.Title>
                             <p>This Campaign Target:</p>
-                            <ProgressBar animated variant="success" now={50} />
-                            <strong>1,000,000 €</strong>
+                            <ProgressBar animated variant="success" now={50} /><br/>
+                            <strong>1,000,000 €</strong><br/>
                             <Button variant="dark" className="redirect-button" onClick={redirectTo}>
                                Campaign &gt;&gt;
                             </Button>
