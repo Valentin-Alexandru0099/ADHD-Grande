@@ -5,10 +5,10 @@ import { Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useState } from 'react';
+import { BASE_API_URL } from '../App';
 
 
 function Home() {
-  const BASE_API_URL = "http://localhost:8080/api/";
 
   AOS.init();
   let navigate = useNavigate();
@@ -29,9 +29,9 @@ function Home() {
       });
   };
 
-  getCount("campaign");
+  getCount("campaigns");
   const campaignsCount = data;
-  getCount("user");
+  getCount("users");
   const accountsCount = data;
 
   console.log(accountsCount);
@@ -65,8 +65,8 @@ function Home() {
           </Button>
         </div>
       </div>
-      <div className='info-workspace'>
-        <div data-aos="flip-up" data-aos-duration="1200" className="information">
+      <div className='info-workspace' data-aos="flip-up" data-aos-duration="1200">
+        <div  className="information">
           <p>
             Total Accounts on site:
           </p>

@@ -31,4 +31,7 @@ public class Campaign {
     @OneToMany(cascade = CascadeType.ALL,
     orphanRemoval = true)
     private List<Opinion> opinionList;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 }

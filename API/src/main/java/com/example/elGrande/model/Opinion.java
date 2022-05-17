@@ -21,4 +21,6 @@ public class Opinion {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Campaign campaign;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 }

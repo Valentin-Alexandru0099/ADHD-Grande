@@ -11,7 +11,7 @@ const names = ["Our Platform", "Our Developers", "Our Mission"];
         <Container id="footer">
             <div className="col1">
                 About:<br/>
-                {about_us.map((about, index) => <p><a href={about} key={index}>{names[index]}</a></p>)}
+                {about_us.map((about, index) => <p key={index}><a href={about} key={index}>{names[index]}</a></p>)}
             </div>
             <div className="col2">
                 Contact:<br/>
