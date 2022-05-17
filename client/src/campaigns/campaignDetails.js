@@ -1,10 +1,11 @@
-import { Container, Button, Card } from "react-bootstrap";
+import { Container, Button, Card, ProgressBar } from "react-bootstrap";
 import { useParams } from "react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_API_URL } from "../App";
 import "./details.css";
 import Form from 'react-bootstrap/Form'
+import photo from "../images/card_image.png";
 
 export default function CampaignDetails() {
 
@@ -25,9 +26,35 @@ export default function CampaignDetails() {
     const type = "radio";
 
     return (
-        <Container>
+        <>
+        <Container className="detail-workspace">
             <div className="camapign-details">
-                ceva
+                <h2>Title</h2>
+                <img className="photo" src={photo} width="90%"></img>
+                <br />
+                <strong>
+                    Target: 1,000,000 euro
+                </strong>
+                <div className="bar">
+                    <ProgressBar animated variant="success" now={50} />
+                </div>
+                <br />
+                <h2>
+                    About this Campaign:
+                </h2>
+                <div className="description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Condimentum id venenatis a condimentum vitae sapien. Diam phasellus vestibulum lorem sed risus ultricies.
+                    Mi eget mauris pharetra et. Iaculis eu non diam phasellus vestibulum lorem sed risus ultricies.
+                    Quam quisque id diam vel quam elementum pulvinar etiam. Arcu bibendum at varius vel pharetra vel.
+                    Aliquet risus feugiat in ante metus. Eu non diam phasellus vestibulum.
+                    Neque ornare aenean euismod elementum nisi quis eleifend quam.
+                    Lectus proin nibh nisl condimentum id. Phasellus faucibus scelerisque eleifend donec pretium vulputate sapien.
+                    Pellentesque sit amet porttitor eget. Quis viverra nibh cras pulvinar mattis nunc sed blandit libero.
+                    Justo eget magna fermentum iaculis eu non. Volutpat ac tincidunt vitae semper quis lectus.
+                    Ultricies lacus sed turpis tincidunt id aliquet risus. Augue mauris augue neque gravida in.
+                </div>
             </div>
             <div className="campaign-payment">
                 <h1>Payment</h1>
@@ -69,41 +96,16 @@ export default function CampaignDetails() {
                                 </h5>
                             </blockquote>
                             <small>12-2-2022</small>
-
-                        </Card.Body>
-                    </Card><Card className="history">
-                        <Card.Body>
-                            <blockquote className="blockquote mb-0">
-                                <h5>
-                                    Cineva payed: atat +
-                                </h5>
-                            </blockquote>
-                            <small>12-2-2022</small>
-
-                        </Card.Body>
-                    </Card><Card className="history">
-                        <Card.Body>
-                            <blockquote className="blockquote mb-0">
-                                <h5>
-                                    Cineva payed: atat +
-                                </h5>
-                            </blockquote>
-                            <small>12-2-2022</small>
-
-                        </Card.Body>
-                    </Card><Card className="history">
-                        <Card.Body>
-                            <blockquote className="blockquote mb-0">
-                                <h5>
-                                    Cineva payed: atat +
-                                </h5>
-                            </blockquote>
-                            <small>12-2-2022</small>
-
                         </Card.Body>
                     </Card>
+
                 </div>
             </div>
+        
         </Container>
+            <div className="opinion-workspace">
+            Opinions
+        </div>
+        </>
     );
 }
