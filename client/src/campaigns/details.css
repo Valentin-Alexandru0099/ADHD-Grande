@@ -61,3 +61,25 @@ div.bar{
 img.photo{
     margin-left: 5%;
 }
+
+div.description{
+    padding: 5%;
+}
+
+div.opinion-workspace{
+    display:  flex;
+    flex-direction: column;
+    margin-bottom: 1%;
+    width: 75%;
+    text-align: center;
+    margin-left: 10%;
+}
+
+div.opinion-card{
+    margin: 1px;
+}
+
+h2.opinion-title{
+    text-align: center;
+    margin: 1%;
+}
