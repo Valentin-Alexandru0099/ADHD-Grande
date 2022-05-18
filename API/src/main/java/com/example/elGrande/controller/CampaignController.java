@@ -3,10 +3,7 @@ package com.example.elGrande.controller;
 import com.example.elGrande.model.Campaign;
 import com.example.elGrande.service.CampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,10 @@ public class CampaignController {
     @GetMapping(value = "/count")
     public Long getCount(){
         return campaignService.getCount();
+    }
+
+    @GetMapping(value = "/campaign/{campaignId}", produces = "application/json")
+    public Campaign getCampaign(@PathVariable Long campaignId){
+        return campaignService.getCampaign(campaignId);
     }
 }

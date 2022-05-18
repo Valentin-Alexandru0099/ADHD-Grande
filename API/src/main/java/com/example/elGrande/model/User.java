@@ -24,6 +24,22 @@ public class User {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL,
-    orphanRemoval = true)
+            orphanRemoval = true)
     private List<Campaign> campaignList;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Opinion> opinionList;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", campaignList=" + campaignList +
+                ", opinionList=" + opinionList +
+                '}';
+    }
 }

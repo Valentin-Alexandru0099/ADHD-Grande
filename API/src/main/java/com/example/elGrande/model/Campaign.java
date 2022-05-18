@@ -1,6 +1,7 @@
 package com.example.elGrande.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,9 +30,26 @@ public class Campaign {
     private LocalDate submissionTime;
 
     @OneToMany(cascade = CascadeType.ALL,
-    orphanRemoval = true)
+            mappedBy = "campaign",
+            orphanRemoval = true)
     private List<Opinion> opinionList;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
+    @Override
+    public String toString() {
+        return "Campaign{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", targetValue=" + targetValue +
+                ", currentValue=" + currentValue +
+                ", currency=" + currency +
+                ", submissionTime=" + submissionTime +
+                ", opinionList=" + opinionList +
+                ", user=" + user +
+                '}';
+    }
 }

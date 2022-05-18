@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CampaignService {
@@ -19,4 +20,11 @@ public class CampaignService {
     public List<Campaign> getAllCampaigns(){
         return  campaignRepository.findAll();
     }
+
+    public Campaign getCampaign(Long id){
+        Optional<Campaign> campaign = campaignRepository.findById(id);
+        System.out.println(campaign.get());
+        return campaign.orElse(null);
+    }
 }
+
