@@ -23,7 +23,6 @@ public class CampaignService {
 
     public Campaign getCampaign(Long id){
         Optional<Campaign> campaign = campaignRepository.findById(id);
-        System.out.println(campaign.get());
         return campaign.orElse(null);
     }
 }

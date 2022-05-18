@@ -27,7 +27,7 @@ public class CampaignController {
         return campaignService.getCount();
     }
 
-    @GetMapping(value = "/campaign/{campaignId}", produces = "application/json")
+    @GetMapping(value = "/campaign/{campaignId}")
     public Campaign getCampaign(@PathVariable Long campaignId){
         return campaignService.getCampaign(campaignId);
     }
