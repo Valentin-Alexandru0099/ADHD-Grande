@@ -23,7 +23,7 @@ export default function OpinionForm() {
 
     return (
         <div className="opinion-form-workspace">
-            <form>
+            <form className="opinion-form">
                 <label>Opinion Description:
                     <input id="description" type="text" placeholder="Enter your opinion here..." required autoFocus />
                 </label><br />
