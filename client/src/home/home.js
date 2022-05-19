@@ -4,7 +4,7 @@ import 'aos/dist/aos.css';
 import { Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BASE_API_URL } from '../App';
 
 
@@ -13,7 +13,8 @@ function Home() {
   AOS.init();
   let navigate = useNavigate();
 
-  const [data, setData] = useState();
+  const [campaignsCount, setCampaignsCount] = useState(0);
+  const [accountsCount, setAccountsCount] = useState(0);
 
 
   function redirectTo(routeName) {
@@ -21,19 +22,25 @@ function Home() {
     window.scroll(0, 0);
   }
 
-
-  async function getCount(routeName) {
-    await axios(BASE_API_URL + routeName + "/count")
+  async function getCampaignCount() {
+    await axios(BASE_API_URL+"campaigns/count")
       .then((response) => {
-        setData(response.data);
+        setCampaignsCount(response.data);
       });
   };
 
-  getCount("campaigns");
-  const campaignsCount = data;
-  getCount("users");
-  const accountsCount = data;
+  async function getAccountCount() {
+    await axios(BASE_API_URL+"users/count")
+      .then((response) => {
+        setAccountsCount(response.data);
+      });
+  };
 
+
+  useEffect(()=>{
+    getAccountCount();
+    getCampaignCount();
+  },[])
 
   return (
     <Container>
@@ -64,12 +71,12 @@ function Home() {
         </div>
       </div>
       <div className='info-workspace' data-aos="flip-up" data-aos-duration="1200">
-        <div  className="information">
+        <div className="information">
           <p>
             Total Accounts on site:
           </p>
           <p className='info-num'>
-          {accountsCount}
+            {accountsCount}
           </p>
         </div>
         <div data-aos="flip-up" data-aos-duration="2000" className="information">
@@ -77,7 +84,7 @@ function Home() {
             Total Campaigns on site:
           </p>
           <p className='info-num'>
-          {campaignsCount}
+            {campaignsCount}
           </p>
         </div>
       </div>

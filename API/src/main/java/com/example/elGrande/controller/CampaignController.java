@@ -31,4 +31,9 @@ public class CampaignController {
     public Campaign getCampaign(@PathVariable Long campaignId){
         return campaignService.getCampaign(campaignId);
     }
+
+    @PostMapping(value = "/add-campaign")
+    public void addCampaign(@RequestBody Campaign campaign){
+        campaignService.addCampaign(campaign);
+    }
 }
