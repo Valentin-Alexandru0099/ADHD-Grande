@@ -20,7 +20,6 @@ function Campaigns() {
         getCampaignData();
     }, [])
 
-
     return (
         <Container>
             {campaigns.map(campaign => (

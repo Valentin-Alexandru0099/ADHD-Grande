@@ -34,8 +34,6 @@ function Home() {
   getCount("users");
   const accountsCount = data;
 
-  console.log(accountsCount);
-  console.log(campaignsCount);
 
   return (
     <Container>

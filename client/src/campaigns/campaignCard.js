@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 export default function CampaignCard(props) {
 
-    console.log(props.data)
     let navigate = useNavigate();
 
     function redirectTo() {

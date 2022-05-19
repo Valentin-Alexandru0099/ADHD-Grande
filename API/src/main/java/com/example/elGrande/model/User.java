@@ -24,10 +24,12 @@ public class User {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "user",
             orphanRemoval = true)
     private List<Campaign> campaignList;
 
     @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "user",
             orphanRemoval = true)
     private List<Opinion> opinionList;
 

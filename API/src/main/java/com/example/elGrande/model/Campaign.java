@@ -30,6 +30,7 @@ public class Campaign {
     private LocalDate submissionTime;
 
     @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "campaign",
             orphanRemoval = true)
     private List<Opinion> opinionList;
 
