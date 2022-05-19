@@ -25,7 +25,7 @@ export default function CampaignForm() {
 
     return (
         <div className="campaign-form-workspace">
-            <form>
+            <form className="campaign-form">
                 <label>Title:
                     <input id="name" type="text" placeholder="Title" required autoFocus />
                 </label><br />
@@ -37,12 +37,12 @@ export default function CampaignForm() {
                 </label><br />
                 <label>Currency:<br/>
                     <select id="currency">
-                        <option value="RON">RON</option>
-                        <option value="EUR">EUR</option>
-                        <option value="CZK">CZK</option>
-                        <option value="AUD">AUD</option>
-                        <option value="NZD">NZD</option>
-                        <option value="USD">USD</option>
+                        <option value="RON">Romanian Leu</option>
+                        <option value="EUR">Euro</option>
+                        <option value="CZK">Czech Republic Koruna</option>
+                        <option value="AUD">Australian Dollar</option>
+                        <option value="NZD">New Zealand Dollar</option>
+                        <option value="USD">United States Dollar</option>
                     </select>
                 </label><br />
                 <Button variant="dark" className="submit-campaign" onClick={addCampaign}>

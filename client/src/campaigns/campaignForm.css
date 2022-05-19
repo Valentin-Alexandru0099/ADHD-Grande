@@ -1,7 +1,26 @@
-div.campaign-form-workspace{
-    text-align: center;
-    margin: 1%;
-}
 button.submit-campaign{
     margin-top: 2%;
+}
+div.campaign-form-workspace{
+    margin: 1%;
+    background-color: whitesmoke;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+    height: 500px;
+    border-radius: 10%;
+}
+
+input{
+    margin:1%
+}
+
+form.campaign-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form.campaign-form label{
+    margin-top: 3%;
 }
