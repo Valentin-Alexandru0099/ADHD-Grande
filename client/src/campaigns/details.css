@@ -15,7 +15,7 @@ div.campaign-payment{
     width: 15%;
 }
 
-div.campaign-payment h1,button,h4{
+div.campaign-payment h1,button.payment-btn,h4{
     margin-bottom: 10% ;
 }
 
@@ -82,4 +82,11 @@ div.opinion-card{
 h2.opinion-title{
     text-align: center;
     margin: 1%;
+}
+
+button.add-opinion{
+    width: 15%;
+    padding: 1%;
+    margin-left: 42.5%;
+    margin-bottom: 1%;
 }

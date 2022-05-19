@@ -1,5 +1,5 @@
 import { Container, Button, Card } from "react-bootstrap";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_API_URL } from "../App";
@@ -10,10 +10,17 @@ import OpinionCard from "../opinion/opinionCard";
 
 export default function CampaignDetails() {
 
+    let navigate = useNavigate();
     const possibleAmount = ["1", "5", "10", "50", "100", "200", "500", "1000"];
     const [campaign, setCampaign] = useState([]);
     const { id } = useParams();
     const [opinions, setOpinions] = useState([]);
+
+    function redirect(){
+        navigate("add-opinion")
+        window.scroll(0,0)
+    }
+
 
     async function getCampaignData() {
         await axios(BASE_API_URL + "campaigns/campaign/" + id)
@@ -50,20 +57,20 @@ export default function CampaignDetails() {
                         <h1>Payment</h1>
                         <Form>
                             <div className="mb-3">
-                                {possibleAmount.map((amaount, index) => {
+                                {possibleAmount.map((amount, index) => {
                                     return (
                                         <Form.Check
                                             key={index}
-                                            label={amaount}
+                                            label={amount}
                                             name="payment-value"
-                                            value={amaount}
+                                            value={amount}
                                             type="radio"
                                             id={`inline-radio-${index + 1}`}
                                         />);
                                 })}
                             </div>
                         </Form>
-                        <Button variant="dark">Payment</Button>
+                        <Button variant="dark" className="payment-btn">Payment</Button>
                         <h4>
                             Payment History:
                         </h4>
@@ -95,6 +102,7 @@ export default function CampaignDetails() {
                     <h2 className="opinion-title">
                         Opinions:
                     </h2>
+                    <Button className="add-opinion" onClick={redirect} variant="dark">+ Add Opinion +</Button>
                     {opinions.map((opinion, index) => {
                         return(
                         <OpinionCard data={opinion} key={index} />)

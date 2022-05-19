@@ -49,7 +49,7 @@ function Home() {
         <div data-aos="fade-up-right" data-aos-duration="1200" className="influence_campaign">
           <p>Intereseted in opening a campaign?</p>
           <p className='hide'>Open one NOW:</p>
-          <Button className='btn-redirect' variant='dark' onClick={() => redirectTo("/new_campaign")}>
+          <Button className='btn-redirect' variant='dark' onClick={() => redirectTo("campaigns/add-campaign")}>
             <strong>New Campaign</strong>
           </Button>
         </div>
