@@ -90,3 +90,7 @@ button.add-opinion{
     margin-left: 42.5%;
     margin-bottom: 1%;
 }
+
+div.opinion-card-head{
+    text-align: start;
+}
