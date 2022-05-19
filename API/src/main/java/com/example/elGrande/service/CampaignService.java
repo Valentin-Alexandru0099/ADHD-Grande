@@ -3,10 +3,10 @@ package com.example.elGrande.service;
 import com.example.elGrande.model.Campaign;
 import com.example.elGrande.model.Opinion;
 import com.example.elGrande.service.DAO.CampaignRepository;
-import com.example.elGrande.service.DAO.OpinionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +38,7 @@ public class CampaignService {
 
     public void addCampaign(Campaign campaign){
         campaign.setSubmissionTime(LocalDate.now());
+        campaign.setCurrentValue(BigDecimal.valueOf(0));
         campaignRepository.save(campaign);
     }
     

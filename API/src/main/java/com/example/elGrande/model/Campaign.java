@@ -34,13 +34,18 @@ public class Campaign {
             orphanRemoval = true)
     private List<Opinion> opinionList;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private User user;
 
     public void addOpinion(Opinion opinion){
         this.opinionList.add(opinion);
         opinion.setCampaign(this);
+    }
+
+    public void removeOpinion(Opinion opinion){
+        opinionList.remove(opinion);
+        opinion.setCampaign(null);
     }
 
     @Override

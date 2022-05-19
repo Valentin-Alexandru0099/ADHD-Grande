@@ -105,7 +105,7 @@ export default function CampaignDetails() {
                     <Button className="add-opinion" onClick={redirect} variant="dark">+ Add Opinion +</Button>
                     {opinions.map((opinion, index) => {
                         return(
-                        <OpinionCard data={opinion} key={index} />)
+                        <OpinionCard data={opinion} campaignId={id} key={index} />)
                     })}
                 </div>
             </Container>

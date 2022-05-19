@@ -6,11 +6,10 @@ import { BASE_API_URL } from "../App";
 
 export default function OpinionCard(props) {
 
-
     async function deleteOpinion(opinionId) {
         await axios.delete(BASE_API_URL + "opinions/delete-opinion/" + opinionId)
             .then(showStatus(opinionId));
-    }
+    };
 
     
     function showStatus(opinionId) {
@@ -21,7 +20,7 @@ export default function OpinionCard(props) {
             statusDiv.remove();
         }, 5000);
     };
-    
+
     return (
         <>
             <div className="delete-status" id={props.data.id}>

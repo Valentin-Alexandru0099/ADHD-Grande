@@ -9,4 +9,8 @@ public class OpinionService {
 
     @Autowired
     private OpinionRepository opinionRepository;
+
+    public void deleteOpinion(Long id){
+        opinionRepository.delete(opinionRepository.getById(id));
+    }
 }
