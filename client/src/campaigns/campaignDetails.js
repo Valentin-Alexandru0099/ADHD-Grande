@@ -6,7 +6,7 @@ import { BASE_API_URL } from "../App";
 import "./details.css";
 import Form from 'react-bootstrap/Form'
 import photo from "../images/card_image.png";
-import OpinionCard from "./opinionCard";
+import OpinionCard from "../opinion/opinionCard";
 
 export default function CampaignDetails() {
 
