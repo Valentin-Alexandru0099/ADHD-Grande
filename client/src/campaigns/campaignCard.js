@@ -18,11 +18,12 @@ export default function CampaignCard(props) {
 
 
     function showStatus(campaignId) {
-
-        document.getElementById(campaignId).style = "display: block;";
+        document.querySelector(`.campaigns_workspace[data-campaign-id="${campaignId}"]`).remove();
+        let statusDiv = document.getElementById(campaignId);
+        statusDiv.style = "display: block;";
         setTimeout(() => {
-            document.getElementById(campaignId).style = "display: none;";
-        }, 2000);
+            statusDiv.remove();
+        }, 5000);
     };
 
     async function deleteCampaign(campaignId) {
@@ -45,7 +46,7 @@ export default function CampaignCard(props) {
             <div className="delete-status" id={props.data.id}>
                 Delete Successful!
             </div>
-            <div className="campaigns_workspace">
+            <div className="campaigns_workspace" data-campaign-id={props.data.id}>
                 <img className="card_image" width="35%" src={card_image}></img>
                 <Card className="campaign-card">
                     <Card.Header>
