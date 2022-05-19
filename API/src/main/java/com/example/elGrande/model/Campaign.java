@@ -38,6 +38,11 @@ public class Campaign {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    public void addOpinion(Opinion opinion){
+        this.opinionList.add(opinion);
+        opinion.setCampaign(this);
+    }
+
     @Override
     public String toString() {
         return "Campaign{" +

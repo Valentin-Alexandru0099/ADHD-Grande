@@ -12,8 +12,8 @@ export default function OpinionForm() {
 
     async function addOpinion() {
         const description = document.getElementById("description").value;
-        await axios(BASE_API_URL + "campaigns/campaign/" + id + "/add-opinion", {
-            "opinion": description
+        await axios.post(BASE_API_URL + "opinions/add-opinion/" + id, {
+            "description": description
         })
             .then((response) => {
                 console.log(response);

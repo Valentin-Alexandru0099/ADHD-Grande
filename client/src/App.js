@@ -24,7 +24,7 @@ function App() {
           <Route path="/campaigns" element={< Campaigns />}/>
           <Route path="/campaigns/campaign/:id" element={<CampaignDetails />} />
           <Route path="/campaigns/add-campaign" element={<CampaignForm />} />
-          <Route path="//campaigns/campaign/:id/add-opinion" element={<OpinionForm />} />
+          <Route path="/campaigns/campaign/:id/add-opinion" element={<OpinionForm />} />
           
 
         </Routes>
