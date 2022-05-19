@@ -1,4 +1,4 @@
-import { Container, Button, Card, ProgressBar } from "react-bootstrap";
+import { Container, Button, Card } from "react-bootstrap";
 import { useParams } from "react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
