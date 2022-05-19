@@ -36,4 +36,9 @@ public class CampaignController {
     public void addCampaign(@RequestBody Campaign campaign){
         campaignService.addCampaign(campaign);
     }
+
+    @DeleteMapping(value= "delete-campaign/{campaignId}")
+    public void deleteCampaign(@PathVariable Long campaignId){
+        campaignService.deleteCampaign(campaignId);
+    }
 }

@@ -14,31 +14,31 @@ export default function CampaignCard(props) {
     function redirectTo() {
         navigate("campaign/" + props.data.id)
         window.scroll(0, 0);
-    }
+    };
 
 
-    function showStatus(statusDiv) {
-        statusDiv.style = "display: block;";
+    function showStatus(campaignId) {
+
+        document.getElementById(campaignId).style = "display: block;";
         setTimeout(() => {
-            statusDiv.style = "display: none;";
+            document.getElementById(campaignId).style = "display: none;";
         }, 2000);
-    }
+    };
 
     async function deleteCampaign(campaignId) {
-        showStatus(document.getElementById(campaignId));
-        await axios.delete(BASE_API_URL + "campaigns/delete-campaign/"+ campaignId)
-            .then(showStatus())
-    }
+        await axios.delete(BASE_API_URL + "campaigns/delete-campaign/" + campaignId)
+            .then(showStatus(campaignId))
+    };
 
     const [percent, setPercent] = useState(0);
 
     useEffect(() => {
         calculateDifference(props.data.targetValue, props.data.currentValue);
-    }, [])
+    }, []);
 
     function calculateDifference(num1, num2) {
         setPercent((num2 / num1) * 100);
-    }
+    };
 
     return (
         <>
@@ -74,5 +74,5 @@ export default function CampaignCard(props) {
                 </Card>
             </div>
         </>
-    )
-}
+    );
+};

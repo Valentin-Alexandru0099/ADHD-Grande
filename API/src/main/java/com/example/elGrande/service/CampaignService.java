@@ -40,5 +40,9 @@ public class CampaignService {
         campaign.setSubmissionTime(LocalDate.now());
         campaignRepository.save(campaign);
     }
+    
+    public void deleteCampaign(Long id){
+        campaignRepository.delete(campaignRepository.findById(id).get());
+    }
 }
 
