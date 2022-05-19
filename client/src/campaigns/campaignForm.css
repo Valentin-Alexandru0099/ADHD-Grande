@@ -7,7 +7,7 @@ div.campaign-form-workspace{
     width: 50%;
     margin-left: 25%;
     text-align: center;
-    height: 500px;
+    height: 650px;
     border-radius: 10%;
 }
 
@@ -23,4 +23,9 @@ form.campaign-form{
 
 form.campaign-form label{
     margin-top: 3%;
+}
+
+div.title-warning, div.description-warning, div.target-warning, div.currency-warning{
+    display: none;
+    color: red;
 }
