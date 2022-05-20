@@ -1,23 +1,28 @@
-div.opinion-form-workspace{
+div.opinion-form-workspace {
     margin: 1%;
     background-color: whitesmoke;
     width: 50%;
     margin-left: 25%;
     text-align: center;
-    height: 200px;
+    height: 350px;
     border-radius: 10%;
 }
 
-input{
-    margin:1%
+input {
+    margin: 1%
 }
 
-form.opinion-form{
+form.opinion-form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-form.opinion-form label{
+form.opinion-form label {
     margin-top: 5%;
+}
+
+div.opinion-warning {
+    color: red;
+    display: none;
 }
