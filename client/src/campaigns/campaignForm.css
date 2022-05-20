@@ -11,8 +11,9 @@ div.campaign-form-workspace{
     border-radius: 10%;
 }
 
-input{
-    margin:1%
+input, textarea{
+    margin:1%;
+    border: solid 1px black;
 }
 
 form.campaign-form{
