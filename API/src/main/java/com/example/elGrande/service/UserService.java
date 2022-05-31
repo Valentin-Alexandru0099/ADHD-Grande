@@ -1,6 +1,6 @@
 package com.example.elGrande.service;
 
-import com.example.elGrande.service.DAO.UserRepository;
+import com.example.elGrande.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public Long getCount(){
-        return  userRepository.count();
+    public Long getCount() {
+        return userRepository.count();
     }
 }

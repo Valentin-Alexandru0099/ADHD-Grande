@@ -12,6 +12,11 @@ export default function CampaignForm() {
     const normalStyle = "border: solid 1px black";
     const message = "*Required to proceed!";
 
+    // const campaignForm ={
+    //     "a": "ceva",
+    //     "b": " CEva2"
+    // }
+
     function validateSubmit() {
         let count = 0;
         const title = document.getElementById("name");

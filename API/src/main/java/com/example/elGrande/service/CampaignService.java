@@ -1,8 +1,8 @@
 package com.example.elGrande.service;
 
-import com.example.elGrande.model.Campaign;
-import com.example.elGrande.model.Opinion;
-import com.example.elGrande.service.DAO.CampaignRepository;
+import com.example.elGrande.entity.Campaign;
+import com.example.elGrande.entity.Opinion;
+import com.example.elGrande.repository.CampaignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,32 +17,33 @@ public class CampaignService {
     @Autowired
     private CampaignRepository campaignRepository;
 
-    public Long getCount(){
+    public Long getCount() {
         return campaignRepository.count();
     }
-    public List<Campaign> getAllCampaigns(){
-        return  campaignRepository.findAll();
+
+    public List<Campaign> getAllCampaigns() {
+        return campaignRepository.findAll();
     }
 
-    public Campaign getCampaign(Long id){
+    public Campaign getCampaign(Long id) {
         Optional<Campaign> campaign = campaignRepository.findById(id);
         return campaign.orElse(null);
     }
 
-    public Opinion addOpinion(Opinion opinion, Long campaignId){
+    public Opinion addOpinion(Opinion opinion, Long campaignId) {
         Campaign campaign = campaignRepository.findById(campaignId).get();
         campaign.addOpinion(opinion);
         campaignRepository.saveAndFlush(campaign);
         return opinion;
     }
 
-    public void addCampaign(Campaign campaign){
+    public void addCampaign(Campaign campaign) {
         campaign.setSubmissionTime(LocalDate.now());
         campaign.setCurrentValue(BigDecimal.valueOf(0));
         campaignRepository.save(campaign);
     }
-    
-    public void deleteCampaign(Long id){
+
+    public void deleteCampaign(Long id) {
         campaignRepository.delete(campaignRepository.findById(id).get());
     }
 }

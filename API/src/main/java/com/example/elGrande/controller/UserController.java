@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("http://localhost:3000/")
 @RequestMapping("api/users")
 public class UserController {
-    
+
     @Autowired
     private UserService userService;
 
     @GetMapping(value = "/count")
-    public Long getCount(){
+    public Long getCount() {
         return userService.getCount();
     }
 }

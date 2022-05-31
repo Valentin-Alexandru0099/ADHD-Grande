@@ -1,4 +1,4 @@
-package com.example.elGrande.model;
+package com.example.elGrande.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

@@ -1,6 +1,6 @@
 package com.example.elGrande.controller;
 
-import com.example.elGrande.model.Opinion;
+import com.example.elGrande.entity.Opinion;
 import com.example.elGrande.service.CampaignService;
 import com.example.elGrande.service.OpinionService;
 import org.springframework.beans.factory.annotation.Autowired;

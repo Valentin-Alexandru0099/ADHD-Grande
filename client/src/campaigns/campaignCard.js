@@ -56,7 +56,7 @@ export default function CampaignCard(props) {
                         <Card.Title>
                             <p>This Campaign Target:</p>
                             <strong>{props.data.targetValue}&nbsp;{props.data.currency}</strong><br />
-                            <ProgressBar animated variant="success" now={percent} /><br />
+                            <ProgressBar  variant="success" now={percent} /><br />
                             <Button variant="dark" className="redirect-button" onClick={redirectTo}>
                                 Campaign &gt;&gt;
                             </Button>

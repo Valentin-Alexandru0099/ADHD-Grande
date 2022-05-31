@@ -40,7 +40,7 @@ export default function CampaignDetails() {
                 <div className="detail-workspace">
                     <div className="camapign-details">
                         <h2>{campaign.name}</h2>
-                        <img className="photo" src={photo} width="90%"></img>
+                        <img className="photo" src={photo} width="75%"></img>
                         <br />
                         <h3>
                             {campaign.currentValue}  / {campaign.targetValue} {campaign.currency}

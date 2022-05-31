@@ -1,4 +1,4 @@
-package com.example.elGrande.model;
+package com.example.elGrande.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -38,12 +38,12 @@ public class Campaign {
     @JsonIgnore
     private User user;
 
-    public void addOpinion(Opinion opinion){
+    public void addOpinion(Opinion opinion) {
         this.opinionList.add(opinion);
         opinion.setCampaign(this);
     }
 
-    public void removeOpinion(Opinion opinion){
+    public void removeOpinion(Opinion opinion) {
         opinionList.remove(opinion);
         opinion.setCampaign(null);
     }
