@@ -58,6 +58,11 @@ export default function CampaignForm() {
                 "description": document.getElementById("description").value,
                 "targetValue": document.getElementById("targetValue").value,
                 "currency": document.getElementById("currency").value
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ""//TODO
+                }
             })
                 .then(response => {
                     console.log(response);
@@ -71,7 +76,7 @@ export default function CampaignForm() {
             field.parentNode.parentNode.children[1].innerText = message;
             document.querySelector(".currency-warning").style = "display: block;";
             field.style = warningStyle;
-            
+
         } else if (field.id === "currency" && field.value != 0) {
             field.parentNode.parentNode.children[1].innerText = message;
             document.querySelector(".currency-warning").style = "display: none;";
@@ -90,7 +95,7 @@ export default function CampaignForm() {
             field.parentNode.parentNode.children[1].innerText = "Minimun 4 chars !"
             field.parentNode.parentNode.children[1].style = "display: block;";
             field.style = warningStyle;
-            
+
         } else if (field.value.length > 3 && field.id !== "targetValue" && field.id !== "currency") {
             field.parentNode.parentNode.children[1].style = "display: none;";
             field.style = normalStyle;

@@ -1,17 +1,23 @@
 package com.example.elGrande.security;
 
+import com.example.elGrande.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import javax.crypto.KeyGenerator;
 import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 @Component
 public class JWTTokenHelper {
@@ -55,12 +61,13 @@ public class JWTTokenHelper {
         return username;
     }
 
-    public String generateToken(String username, Long userId) throws InvalidKeySpecException, NoSuchAlgorithmException {
+    public String generateToken(User user) throws InvalidKeySpecException, NoSuchAlgorithmException {
 
         return Jwts.builder()
                 .setIssuer( appName )
-                .setSubject(username)
-                .setAudience(String.valueOf(userId))
+                .setSubject(user.getUsername())
+                .claim("roles", user.getRoles())
+                .setAudience(String.valueOf(user.getId()))
                 .setIssuedAt(new Date())
                 .setExpiration(generateExpirationDate())
                 .signWith(SIGNATURE_ALGORITHM, secretKey)
@@ -121,5 +128,16 @@ public class JWTTokenHelper {
 
     public String getAuthHeaderFromHeader( HttpServletRequest request ) {
         return request.getHeader("Authorization");
+    }
+
+    Authentication parseUserFromTokenInfo(String token) throws UsernameNotFoundException {
+        Claims body = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+        String username = body.getSubject();
+        List<String> roles = (List<String>) body.get("roles");
+        List<SimpleGrantedAuthority> authorities = new LinkedList<>();
+        for (String role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role));
+        }
+        return new UsernamePasswordAuthenticationToken(username, "", authorities);
     }
 }

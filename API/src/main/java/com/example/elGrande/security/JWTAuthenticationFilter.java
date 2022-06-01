@@ -1,10 +1,9 @@
 package com.example.elGrande.security;
 
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -39,10 +38,9 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
                 if (jwtTokenHelper.validateToken(authToken, userDetails)) {
 
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                    authentication.setDetails(new WebAuthenticationDetails(request));
+                    Authentication auth = jwtTokenHelper.parseUserFromTokenInfo(authToken);
 
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    SecurityContextHolder.getContext().setAuthentication(auth);
 
                 }
 

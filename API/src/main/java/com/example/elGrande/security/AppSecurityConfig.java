@@ -38,6 +38,13 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                                 "/api/campaigns/campaign/*",
                                 "/api/users/register",
                                 "/api/users/login").permitAll()
+                )
+                .authorizeRequests((request) -> request.antMatchers(
+                        "/api/campaigns/add-campaign",
+                        "/api/opinions/add-opinion/*",
+                        "/api/campaigns/delete-campaign/*",
+                        "/api/opinions/delete-opinion/*"
+                        ).hasRole("USER")
                         .anyRequest().authenticated())
                 .addFilterBefore(new JWTAuthenticationFilter(userService, jWTTokenHelper),
                         UsernamePasswordAuthenticationFilter.class);

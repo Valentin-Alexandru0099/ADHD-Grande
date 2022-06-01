@@ -50,7 +50,7 @@ public class UserController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         User user = (User) authentication.getPrincipal();
-        String jwtToken = jWTTokenHelper.generateToken(user.getUsername(), user.getId());
+        String jwtToken = jWTTokenHelper.generateToken(user);
         System.out.println(jwtToken);
         LoginResponse response = new LoginResponse();
         response.setToken(jwtToken);
