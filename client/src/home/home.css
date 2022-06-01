@@ -29,7 +29,7 @@ div.workspace_descriptive {
 
 
 .workspace_descriptive{
-    background-image: url('../images/unknown.png');
+    background-image: url('../image/unknown.png');
     background-size: cover;
     opacity: 0.99;
 }

@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FormControl, Image, Nav, Navbar, Form, Container, NavDropdown } from 'react-bootstrap';
-import me from '../images/img.png';
-import defaultUser from "../images/default_user.png";
+import me from '../image/img.png';
+import defaultUser from "../image/default_user.png";
 import "./navbar.css";
 
 function PageNavBar() {
@@ -36,8 +36,8 @@ function PageNavBar() {
                 Account
               </>
             }>
-              <NavDropdown.Item href="#action/3.1">Register</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Log in</NavDropdown.Item>
+              <NavDropdown.Item href="/register">Register</NavDropdown.Item>
+              <NavDropdown.Item href="/login">Log in</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           </Navbar.Collapse>

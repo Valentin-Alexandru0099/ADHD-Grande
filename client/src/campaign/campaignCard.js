@@ -1,6 +1,6 @@
 import { Card, ProgressBar, Button } from "react-bootstrap";
 import "./campaigns.css";
-import card_image from "../images/card_image.png";
+import card_image from "../image/card_image.png";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
