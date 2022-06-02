@@ -9,6 +9,7 @@ public class UserInfo {
 
     private Long id;
     private String username;
+    private String email;
     private List<Campaign> campaignList;
     private List<Opinion> opinionList;
 
@@ -42,5 +43,13 @@ public class UserInfo {
 
     public void setOpinionList(List<Opinion> opinionList) {
         this.opinionList = opinionList;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

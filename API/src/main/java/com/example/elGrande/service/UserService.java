@@ -50,10 +50,13 @@ public class UserService implements UserDetailsService {
         userRepository.saveAndFlush(user);
     }
 
-    public void addOpinion(Opinion opinion,Long campaignId, Long userId){
-        User user = getUser(userId);
-        user.addOpinion(campaignId, opinion);
-        userRepository.saveAndFlush(user);
+    public void addOpinion(Opinion opinion,Long campaignId, Long userId, Long campaignUserId){
+        User opinionUser = getUser(userId);
+        User campaignUser = getUser(campaignUserId);
+
+        opinion.setUser(opinionUser);
+        campaignUser.addOpinion(campaignId, opinion);
+        userRepository.saveAndFlush(campaignUser);
     }
 
     @Override

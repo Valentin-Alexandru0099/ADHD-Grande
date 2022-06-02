@@ -3,17 +3,31 @@ import axios from "axios";
 import { BASE_API_URL } from "../App";
 import { useNavigate, useParams } from "react-router";
 import { Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
 export default function OpinionForm() {
 
     let navigate = useNavigate();
 
     const { id } = useParams();
+    const [userId, setUserId] = useState();
+
+    async function getUser() {
+        await axios(BASE_API_URL + "campaigns/get-user-by-campaign/" + id)
+            .then((response) => {
+                setUserId(response.data.id);
+            });
+    }
+
+
+    useEffect(() => {
+        getUser();
+    }, []);
 
     async function addOpinion() {
         if (validateSubmit(document.getElementById("description"))) {
             const description = document.getElementById("description").value;
-            await axios.post(BASE_API_URL + "opinions/add-opinion/" + id + "/" + localStorage.getItem("userId"), {
+            await axios.post(BASE_API_URL + "opinions/add-opinion/" + id + "/" + localStorage.getItem("userId") + "/" + userId, {
                 "description": description
             }, {
                 headers: {

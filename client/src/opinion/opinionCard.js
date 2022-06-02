@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { BASE_API_URL } from "../App";
 
@@ -18,20 +19,32 @@ export default function OpinionCard(props) {
     //         })
     // };
 
+    const [user, setUser] = useState();
+
+    async function getUser() {
+        await axios(BASE_API_URL + "opinions/get-user-by-opinion/" + props.data.id)
+            .then((response) => {
+                setUser(response.data);
+            });
+    }
+
+    useEffect(() => (
+        getUser
+    ), []);
+
+
     return (
         <>
             <Card className="opinion-card" data-opinion-id={props.data.id}>
                 <Card.Header className="opinion-card-head">
                     <Button variant="light"> X </Button>
+                    {user && (<><a href={"/user/"+ user.id}>{user.username}</a> feels ...</>)}
                 </Card.Header>
                 <Card.Body>
                     <blockquote className="blockquote mb-0">
                         <p>
                             {props.data.description}
                         </p>
-                        <footer className="blockquote-footer">
-                            Posted by:  <cite title="Source Title">ADHD</cite>
-                        </footer>
                     </blockquote>
                 </Card.Body>
             </Card>

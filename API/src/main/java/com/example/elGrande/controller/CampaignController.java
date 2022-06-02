@@ -32,7 +32,7 @@ public class CampaignController {
         return campaignService.getCount();
     }
 
-    @GetMapping(value = "/getUser/{campaignId}")
+    @GetMapping(value = "/get-user-by-campaign/{campaignId}")
     public ResponseEntity<?> getUserForCampaign(@PathVariable Long campaignId){
         Campaign campaign = campaignService.getCampaign(campaignId);
         User userObj = (User) userService.loadUserByUsername(campaign.getUser().getUsername());

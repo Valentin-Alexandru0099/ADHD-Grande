@@ -19,7 +19,7 @@ export default function CampaignCard(props) {
     const [user, setUser] = useState();
 
     async function getUser() {
-        await axios(BASE_API_URL + "campaigns/getUser/" + props.data.id)
+        await axios(BASE_API_URL + "campaigns/get-user-by-campaign/" + props.data.id)
             .then((response) => {
                 setUser(response.data);
             });

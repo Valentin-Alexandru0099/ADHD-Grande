@@ -50,7 +50,6 @@ public class User implements UserDetails {
     }
 
     public void addOpinion(Long campaignId ,Opinion opinion){
-        opinionList.add(opinion);
         for(Campaign campaign: campaignList){
             if (Objects.equals(campaign.getId(), campaignId)){
                 campaign.addOpinion(opinion);
@@ -58,7 +57,6 @@ public class User implements UserDetails {
                 break;
             }
         }
-        opinion.setUser(this);
     }
 
     @Override

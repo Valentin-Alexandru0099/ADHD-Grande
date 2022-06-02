@@ -1,6 +1,8 @@
 package com.example.elGrande.controller;
 
+import com.example.elGrande.entity.Campaign;
 import com.example.elGrande.entity.User;
+import com.example.elGrande.model.UserInfo;
 import com.example.elGrande.security.JWTTokenHelper;
 import com.example.elGrande.model.LoginResponse;
 import com.example.elGrande.security.AuthenticationRequest;
