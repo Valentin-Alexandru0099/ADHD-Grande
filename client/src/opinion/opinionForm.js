@@ -3,28 +3,59 @@ import axios from "axios";
 import { BASE_API_URL } from "../App";
 import { useNavigate, useParams } from "react-router";
 import { Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
-export default function OpinionForm() {
+export default function OpinionForm(props) {
 
     let navigate = useNavigate();
 
-    const { id } = useParams();
+    const { id, opinionId } = useParams();
+    const [userId, setUserId] = useState();
 
-    async function addOpinion() {
+    async function getUser() {
+        await axios(BASE_API_URL + "campaigns/get-user-by-campaign/" + id)
+            .then((response) => {
+                setUserId(response.data.id);
+            });
+    }
+
+
+    useEffect(() => {
+        getUser();
+    }, []);
+
+    async function addOpinion(update) {
         if (validateSubmit(document.getElementById("description"))) {
-            const description = document.getElementById("description").value;
-            await axios.post(BASE_API_URL + "opinions/add-opinion/" + id, {
-                "description": description
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + localStorage.getItem("token")
-                }
-            })
-                .then((response) => {
-                    console.log(response);
+            if (update) {
+                const description = document.getElementById("description").value;
+                await axios.put(BASE_API_URL + "opinions/update-opinion/" + opinionId , {
+                    "description": description
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + localStorage.getItem("token")
+                    }
                 })
-                .finally(navigate("/campaigns/campaign/" + id));
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .finally(navigate("/campaigns/campaign/" + id));
+            } else {
+                const description = document.getElementById("description").value;
+                await axios.post(BASE_API_URL + "opinions/add-opinion/" + id + "/" + localStorage.getItem("userId") + "/" + userId, {
+                    "description": description
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + localStorage.getItem("token")
+                    }
+                })
+                    .then((response) => {
+                        console.log(response);
+                    })
+                    .finally(navigate("/campaigns/campaign/" + id));
+            }
+
         }
     };
 
@@ -66,10 +97,16 @@ export default function OpinionForm() {
                     </textarea>
                 </label>
                 <div className="opinion-warning"></div><br />
+                {
+                    props.update
+                        ? (<Button variant="dark" onClick={() => addOpinion(true)}>
+                            Submit
+                        </Button>)
+                        : (<Button variant="dark" onClick={() => addOpinion(false)}>
+                            Submit
+                        </Button>)
+                }
 
-                <Button variant="dark" onClick={addOpinion}>
-                    Submit
-                </Button>
             </form>
         </div>
     );

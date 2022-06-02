@@ -3,6 +3,8 @@ import "./campaigns.css";
 import card_image from "../image/card_image.png";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { BASE_API_URL } from "../App";
 
 
 export default function CampaignCard(props) {
@@ -14,12 +16,24 @@ export default function CampaignCard(props) {
         window.scroll(0, 0);
     };
 
+    const [user, setUser] = useState();
+
+    async function getUser() {
+        await axios(BASE_API_URL + "campaigns/get-user-by-campaign/" + props.data.id)
+            .then((response) => {
+                setUser(response.data);
+            });
+    }
+
 
     const [percent, setPercent] = useState(0);
 
     useEffect(() => {
         calculateDifference(props.data.targetValue, props.data.currentValue);
+        getUser();
+
     }, []);
+
 
     function calculateDifference(num1, num2) {
         setPercent((num2 / num1) * 100);
@@ -47,8 +61,11 @@ export default function CampaignCard(props) {
                     </Card.Body>
                     <Card.Footer className="text-muted">
                         <footer>
-                            Created by: <a href="/user/1" title="Source Title">ADHD</a>
+                            {user && (<>
+                                Created by: <a href={"user/" + user.id} title="Source Title">{user.username}</a></>
+                                )}
                         </footer>
+
                     </Card.Footer>
                 </Card>
             </div>

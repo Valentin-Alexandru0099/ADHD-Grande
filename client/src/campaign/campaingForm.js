@@ -2,15 +2,23 @@ import { Button } from "react-bootstrap";
 import "./campaignForm.css";
 import axios from "axios";
 import { BASE_API_URL } from "../App";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
-export default function CampaignForm() {
+export default function CampaignForm(props) {
 
     let navigate = useNavigate();
+    const { id } = useParams();
     const minAmount = 1000;
     const warningStyle = "border: solid 1px red;";
     const normalStyle = "border: solid 1px black";
     const message = "*Required to proceed!";
+
+    // const [campaignForm, setCampaignForm] = useState({
+    //     title: "",
+    //     description: "",
+    //     targetValue: 0,
+    // })
+
 
     // const campaignForm ={
     //     "a": "ceva",
@@ -50,26 +58,44 @@ export default function CampaignForm() {
         return count > 0 ? false : true;
     };
 
-
-    async function addCampaign() {
+    async function addCampaign(update) {
         if (validateSubmit()) {
-            await axios.post(BASE_API_URL + "campaigns/add-campaign", {
-                "name": document.getElementById("name").value,
-                "description": document.getElementById("description").value,
-                "targetValue": document.getElementById("targetValue").value,
-                "currency": document.getElementById("currency").value
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': "Bearer " + localStorage.getItem("token")
-                }
-            })
-                .then(response => {
-                    console.log(response);
+            if (update) {
+                await axios.put(BASE_API_URL + "campaigns/update-campaign/" + id, {
+                    "name": document.getElementById("name").value,
+                    "description": document.getElementById("description").value,
+                    "targetValue": document.getElementById("targetValue").value,
+                    "currency": document.getElementById("currency").value
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + localStorage.getItem("token")
+                    }
                 })
-                .finally(navigate("/campaigns"));
+                    .then(response => {
+                        console.log(response);
+                    })
+                    .finally(navigate("/campaigns/campaign/" + id));
+            } else {
+                await axios.post(BASE_API_URL + "campaigns/add-campaign/" + localStorage.getItem("userId"), {
+                    "name": document.getElementById("name").value,
+                    "description": document.getElementById("description").value,
+                    "targetValue": document.getElementById("targetValue").value,
+                    "currency": document.getElementById("currency").value
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': "Bearer " + localStorage.getItem("token")
+                    }
+                })
+                    .then(response => {
+                        console.log(response);
+                    })
+                    .finally(navigate("/campaigns"));
+            }
         }
     }
+
 
     function validateField(field) {
         if (field.id === "currency" && field.value == 0) {
@@ -139,10 +165,18 @@ export default function CampaignForm() {
                     </label>
                     <div className="currency-warning"></div>
                 </div>
-                <Button variant="dark" className="submit-campaign" onClick={addCampaign}>
-                    Submit
-                </Button>
+                {
+                    props.update
+                        ? (<Button variant="dark" className="submit-campaign" onClick={() => { addCampaign(true) }}>
+                            Submit
+                        </Button>)
+                        : (<Button variant="dark" className="submit-campaign" onClick={() => { addCampaign(false) }}>
+                            Submit
+                        </Button>)
+                }
+
             </form>
         </div>
     );
+
 };

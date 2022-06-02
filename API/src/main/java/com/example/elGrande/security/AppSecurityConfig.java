@@ -32,18 +32,21 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().exceptionHandling()
                 .authenticationEntryPoint(authenticationEntryPoint).and()
                 .authorizeRequests((request) -> request.antMatchers(
-                                "/",
-                                "/api/*/count",
-                                "/api/campaigns",
-                                "/api/campaigns/campaign/*",
-                                "/api/users/register",
-                                "/api/users/login").permitAll()
+                        "/",
+                        "/api/*/count",
+                        "/api/campaigns",
+                        "/api/campaigns/campaign/*",
+                        "/api/campaigns/get-user-by-campaign/*",
+                        "/api/opinions/get-user-by-opinion/*",
+                        "/api/users/register",
+                        "/api/users/login").permitAll()
+
                 )
                 .authorizeRequests((request) -> request.antMatchers(
-                        "/api/campaigns/add-campaign",
-                        "/api/opinions/add-opinion/*",
-                        "/api/campaigns/delete-campaign/*",
-                        "/api/opinions/delete-opinion/*"
+                                "/api/campaigns/add-campaign/*",
+                                "/api/opinions/add-opinion/*",
+                                "/api/campaigns/delete-campaign/*",
+                                "/api/opinions/delete-opinion/*"
                         ).hasRole("USER")
                         .anyRequest().authenticated())
                 .addFilterBefore(new JWTAuthenticationFilter(userService, jWTTokenHelper),

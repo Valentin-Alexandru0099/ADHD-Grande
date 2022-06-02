@@ -1,5 +1,7 @@
 package com.example.elGrande.service;
 
+import com.example.elGrande.entity.Campaign;
+import com.example.elGrande.entity.Opinion;
 import com.example.elGrande.entity.User;
 import com.example.elGrande.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -25,6 +32,31 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder().encode(user.getPassword()));
         user.getRoles().add("ROLE_USER");
         userRepository.save(user);
+    }
+
+    public User getUser(Long id){
+        Optional<User> user = userRepository.findById(id);
+        return user.orElse(null);
+
+    }
+
+    public void addCampaign(Campaign campaign, Long userId){
+        campaign.setSubmissionTime(LocalDate.now());
+        campaign.setCurrentValue(BigDecimal.valueOf(0));
+
+        User user = getUser(userId);
+        user.addCampaign(campaign);
+
+        userRepository.saveAndFlush(user);
+    }
+
+    public void addOpinion(Opinion opinion,Long campaignId, Long userId, Long campaignUserId){
+        User opinionUser = getUser(userId);
+        User campaignUser = getUser(campaignUserId);
+
+        opinion.setUser(opinionUser);
+        campaignUser.addOpinion(campaignId, opinion);
+        userRepository.saveAndFlush(campaignUser);
     }
 
     @Override

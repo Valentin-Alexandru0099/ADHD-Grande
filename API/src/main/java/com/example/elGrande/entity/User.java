@@ -10,12 +10,13 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Data
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -28,17 +29,35 @@ public class User implements UserDetails {
     private String password;
     private String email;
     @ElementCollection(fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<String> roles = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "user",
             orphanRemoval = true)
+    @JsonIgnore
     private List<Campaign> campaignList;
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "user",
             orphanRemoval = true)
+    @JsonIgnore
     private List<Opinion> opinionList;
+
+    public void addCampaign(Campaign campaign){
+        campaignList.add(campaign);
+        campaign.setUser(this);
+    }
+
+    public void addOpinion(Long campaignId ,Opinion opinion){
+        for(Campaign campaign: campaignList){
+            if (Objects.equals(campaign.getId(), campaignId)){
+                campaign.addOpinion(opinion);
+                opinion.setCampaign(campaign);
+                break;
+            }
+        }
+    }
 
     @Override
     public String toString() {
@@ -47,11 +66,9 @@ public class User implements UserDetails {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", campaignList=" + campaignList +
-                ", opinionList=" + opinionList +
                 '}';
     }
-
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

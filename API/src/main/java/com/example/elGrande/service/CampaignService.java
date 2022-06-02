@@ -30,21 +30,16 @@ public class CampaignService {
         return campaign.orElse(null);
     }
 
-    public Opinion addOpinion(Opinion opinion, Long campaignId) {
-        Campaign campaign = campaignRepository.findById(campaignId).get();
-        campaign.addOpinion(opinion);
-        campaignRepository.saveAndFlush(campaign);
-        return opinion;
-    }
-
-    public void addCampaign(Campaign campaign) {
-        campaign.setSubmissionTime(LocalDate.now());
-        campaign.setCurrentValue(BigDecimal.valueOf(0));
-        campaignRepository.save(campaign);
-    }
-
     public void deleteCampaign(Long id) {
         campaignRepository.delete(campaignRepository.findById(id).get());
+    }
+
+    public void updateCampaign(Campaign data, Long id){
+        Campaign campaign = getCampaign(id);
+        campaign.setName(data.getName());
+        campaign.setDescription(data.getDescription());
+        campaign.setTargetValue(data.getTargetValue());
+        campaignRepository.saveAndFlush(campaign);
     }
 }
 

@@ -1,4 +1,4 @@
-package com.example.elGrande.security;
+package com.example.elGrande.model;
 
 public class LoginResponse {
 
