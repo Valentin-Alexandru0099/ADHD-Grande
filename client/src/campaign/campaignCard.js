@@ -3,8 +3,6 @@ import "./campaigns.css";
 import card_image from "../image/card_image.png";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { BASE_API_URL } from "../App";
 
 
 export default function CampaignCard(props) {
@@ -16,25 +14,6 @@ export default function CampaignCard(props) {
         window.scroll(0, 0);
     };
 
-
-    function showStatus(campaignId) {
-        document.querySelector(`.campaigns_workspace[data-campaign-id="${campaignId}"]`).remove();
-        let statusDiv = document.getElementById(campaignId);
-        statusDiv.style = "display: block;";
-        setTimeout(() => {
-            statusDiv.remove();
-        }, 5000);
-    };
-
-    async function deleteCampaign(campaignId) {
-        await axios.delete(BASE_API_URL + "campaigns/delete-campaign/" + campaignId, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + localStorage.getItem("token")
-            }
-        })
-            .then(showStatus(campaignId))
-    };
 
     const [percent, setPercent] = useState(0);
 
@@ -48,9 +27,6 @@ export default function CampaignCard(props) {
 
     return (
         <>
-            <div className="delete-status" id={props.data.id}>
-                Delete Successful!
-            </div>
             <div className="campaigns_workspace" data-campaign-id={props.data.id}>
                 <img className="card_image" width="35%" src={card_image}></img>
                 <Card className="campaign-card">
@@ -64,9 +40,6 @@ export default function CampaignCard(props) {
                             <ProgressBar variant="success" now={percent} /><br />
                             <Button variant="dark" className="redirect-button" onClick={redirectTo}>
                                 Campaign &gt;&gt;
-                            </Button>
-                            <Button variant="danger" className="delete-button" onClick={() => { deleteCampaign(props.data.id) }}>
-                                Delete
                             </Button>
                         </Card.Title>
                         <Card.Text>
