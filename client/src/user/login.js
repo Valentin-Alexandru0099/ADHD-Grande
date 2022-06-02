@@ -3,18 +3,24 @@ import { useNavigate } from "react-router";
 import { BASE_API_URL } from "../App";
 
 
-export default function LoginForm(){
+export default function LoginForm() {
 
     let navigate = useNavigate();
-    async function login() {
+    async function login(e) {
+        console.log(document.querySelector("#username").value)
         await axios.post(BASE_API_URL + "users/login", {
             "username": document.querySelector("#username").value,
             "password": document.querySelector("#password").value,
         })
             .then(response => {
                 console.log(response);
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("username", response.data.username);
+                localStorage.setItem("userId", response.data.userId);
             })
-            .finally(navigate("/"));
+            .finally(
+                navigate("/")
+            )
     };
 
 

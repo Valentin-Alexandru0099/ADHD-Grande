@@ -7,11 +7,16 @@ import { BASE_API_URL } from "../App";
 export default function OpinionCard(props) {
 
     async function deleteOpinion(opinionId) {
-        await axios.delete(BASE_API_URL + "opinions/delete-opinion/" + opinionId)
+        await axios.delete(BASE_API_URL + "opinions/delete-opinion/" + opinionId, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem("token")
+            }
+        })
             .then(showStatus(opinionId));
     };
 
-    
+
     function showStatus(opinionId) {
         document.querySelector(`.opinion-card[data-opinion-id="${opinionId}"]`).remove();
         let statusDiv = document.getElementById(opinionId);

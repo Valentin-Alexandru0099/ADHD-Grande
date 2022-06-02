@@ -18,29 +18,34 @@ function Home() {
 
 
   function redirectTo(routeName) {
+    if (routeName === "campaigns/add-campaign" && !localStorage.getItem("userId")) {
+      navigate("/login");
+      window.scroll(0, 0);
+      return;
+    }
     navigate(routeName);
     window.scroll(0, 0);
   }
 
   async function getCampaignCount() {
-    await axios(BASE_API_URL+"campaigns/count")
+    await axios(BASE_API_URL + "campaigns/count")
       .then((response) => {
         setCampaignsCount(response.data);
       });
   };
 
   async function getAccountCount() {
-    await axios(BASE_API_URL+"users/count")
+    await axios(BASE_API_URL + "users/count")
       .then((response) => {
         setAccountsCount(response.data);
       });
   };
 
 
-  useEffect(()=>{
+  useEffect(() => {
     getAccountCount();
     getCampaignCount();
-  },[])
+  }, [])
 
   return (
     <Container>

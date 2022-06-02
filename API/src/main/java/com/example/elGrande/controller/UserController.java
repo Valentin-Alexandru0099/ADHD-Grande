@@ -51,9 +51,10 @@ public class UserController {
 
         User user = (User) authentication.getPrincipal();
         String jwtToken = jWTTokenHelper.generateToken(user);
-        System.out.println(jwtToken);
         LoginResponse response = new LoginResponse();
         response.setToken(jwtToken);
+        response.setUserId(user.getId());
+        response.setUsername(user.getUsername());
         return ResponseEntity.ok(response);
     }
 }

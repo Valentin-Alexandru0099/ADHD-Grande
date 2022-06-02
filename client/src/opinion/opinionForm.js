@@ -15,6 +15,11 @@ export default function OpinionForm() {
             const description = document.getElementById("description").value;
             await axios.post(BASE_API_URL + "opinions/add-opinion/" + id, {
                 "description": description
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': "Bearer " + localStorage.getItem("token")
+                }
             })
                 .then((response) => {
                     console.log(response);
@@ -24,23 +29,23 @@ export default function OpinionForm() {
     };
 
     function validateField(field) {
-        if (field.value.length <= 3){
+        if (field.value.length <= 3) {
             field.style = "boder: solid 1px red;"
             field.parentNode.parentNode.children[1].innerText = "Minimun 4 chars!";
             field.parentNode.parentNode.children[1].style = "display: block;";
-    }else{
-        field.style = "boder: solid 1px black;"
+        } else {
+            field.style = "boder: solid 1px black;"
             field.parentNode.parentNode.children[1].style = "display: none;";
+        }
     }
-}
 
-    function validateSubmit(field){
-        if (field.value.length <= 3){
+    function validateSubmit(field) {
+        if (field.value.length <= 3) {
             field.style = "boder: solid 1px red;"
             field.parentNode.parentNode.children[1].innerText = "*Required to proceed!";
             field.parentNode.parentNode.children[1].style = "display: block;";
             return false;
-        }else{
+        } else {
             return true;
         };
     };
