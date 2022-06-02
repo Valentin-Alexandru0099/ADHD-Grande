@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -43,6 +44,18 @@ public class User implements UserDetails {
     public void addCampaign(Campaign campaign){
         campaignList.add(campaign);
         campaign.setUser(this);
+    }
+
+    public void addOpinion(Long campaignId ,Opinion opinion){
+        opinionList.add(opinion);
+        for(Campaign campaign: campaignList){
+            if (Objects.equals(campaign.getId(), campaignId)){
+                campaign.addOpinion(opinion);
+                opinion.setCampaign(campaign);
+                break;
+            }
+        }
+        opinion.setUser(this);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.elGrande.service;
 
 import com.example.elGrande.entity.Campaign;
+import com.example.elGrande.entity.Opinion;
 import com.example.elGrande.entity.User;
 import com.example.elGrande.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,12 @@ public class UserService implements UserDetailsService {
         User user = getUser(userId);
         user.addCampaign(campaign);
 
+        userRepository.saveAndFlush(user);
+    }
+
+    public void addOpinion(Opinion opinion,Long campaignId, Long userId){
+        User user = getUser(userId);
+        user.addOpinion(campaignId, opinion);
         userRepository.saveAndFlush(user);
     }
 

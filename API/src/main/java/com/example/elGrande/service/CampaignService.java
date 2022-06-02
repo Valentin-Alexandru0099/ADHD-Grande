@@ -30,13 +30,6 @@ public class CampaignService {
         return campaign.orElse(null);
     }
 
-    public Opinion addOpinion(Opinion opinion, Long campaignId) {
-        Campaign campaign = campaignRepository.findById(campaignId).get();
-        campaign.addOpinion(opinion);
-        campaignRepository.saveAndFlush(campaign);
-        return opinion;
-    }
-
     public void deleteCampaign(Long id) {
         campaignRepository.delete(campaignRepository.findById(id).get());
     }

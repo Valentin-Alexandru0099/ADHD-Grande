@@ -3,6 +3,7 @@ package com.example.elGrande.controller;
 import com.example.elGrande.entity.Opinion;
 import com.example.elGrande.service.CampaignService;
 import com.example.elGrande.service.OpinionService;
+import com.example.elGrande.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,12 @@ public class OpinionController {
     @Autowired
     private OpinionService opinionService;
 
-    @PostMapping(value = "/add-opinion/{campaignId}")
-    public Opinion addOpinion(@RequestBody Opinion opinion, @PathVariable Long campaignId) {
-        return campaignService.addOpinion(opinion, campaignId);
+    @Autowired
+    private UserService userService;
+
+    @PostMapping(value = "/add-opinion/{campaignId}/{userId}")
+    public void addOpinion(@RequestBody Opinion opinion, @PathVariable Long campaignId,@PathVariable Long userId) {
+        userService.addOpinion(opinion, campaignId, userId);
     }
 
     @DeleteMapping(value = "/delete-opinion/{opinionId}")
