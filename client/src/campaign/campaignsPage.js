@@ -29,7 +29,7 @@ function Campaigns() {
 
     return (
         <Container>
-            <Button variant="dark" onClick={redirect} className="add-campaign">+ Add Campaign +</Button>
+            {localStorage.getItem("userId") && (<Button variant="dark" onClick={redirect} className="add-campaign">+ Add Campaign +</Button>)}
             {campaigns.map(campaign => (
                 <CampaignCard key={campaign.id} data={campaign} />
             ))}
