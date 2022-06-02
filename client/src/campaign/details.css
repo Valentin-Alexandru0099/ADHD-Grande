@@ -94,3 +94,10 @@ button.add-opinion{
 div.opinion-card-head{
     text-align: start;
 }
+
+
+button.update-button, button.delete-button{
+    color: white;
+    margin: 1%;
+    padding: 1%;
+}

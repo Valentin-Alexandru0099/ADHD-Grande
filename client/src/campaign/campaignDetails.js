@@ -16,23 +16,34 @@ export default function CampaignDetails() {
     const { id } = useParams();
     const [opinions, setOpinions] = useState([]);
 
+    const [user, setUser] = useState();
+
+    async function getUser() {
+        await axios(BASE_API_URL + "campaigns/get-user-by-campaign/" + id)
+            .then((response) => {
+                setUser(response.data);
+            });
+    }
+
+
     function redirect() {
         navigate("add-opinion")
         window.scroll(0, 0)
     }
 
 
-    // async function deleteCampaign(campaignId) {
-    //     await axios.delete(BASE_API_URL + "campaigns/delete-campaign/" + campaignId, {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Authorization': "Bearer " + localStorage.getItem("token")
-    //         }
-    //     })
-    //         .then(response => {
-    //             console.log(response);
-    //         })
-    // };
+    async function deleteCampaign() {
+        await axios.delete(BASE_API_URL + "campaigns/delete-campaign/" + id, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem("token")
+            }
+        })
+            .then(response => {
+                console.log(response);
+            })
+            .finally(navigate("/campaigns"));
+    };
 
 
     async function getCampaignData() {
@@ -45,13 +56,23 @@ export default function CampaignDetails() {
 
     useEffect(() => {
         getCampaignData();
+        getUser();
     }, [])
 
+    console.log(user);
+    console.log(localStorage.getItem("userId"))
     return (
         <>
             <Container >
                 <div className="detail-workspace">
                     <div className="camapign-details">
+                        {user ? user.id == localStorage.getItem("userId") && (
+                            <div className="user-action">
+                                <Button onClick={deleteCampaign} className="delete-button" variant="danger">Delete</Button>
+                                <Button className="update-button" variant="info">Update</Button>
+                            </div>
+                        ) : (<></>)}
+
                         <h2>{campaign.name}</h2>
                         <img className="photo" src={photo} width="75%"></img>
                         <br />
