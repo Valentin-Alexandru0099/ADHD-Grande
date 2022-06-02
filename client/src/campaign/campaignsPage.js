@@ -27,6 +27,8 @@ function Campaigns() {
         getCampaignData();
     }, [])
 
+    console.log(campaigns)
+
     return (
         <Container>
             {localStorage.getItem("userId") && (<Button variant="dark" onClick={redirect} className="add-campaign">+ Add Campaign +</Button>)}

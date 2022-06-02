@@ -36,6 +36,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                                 "/api/*/count",
                                 "/api/campaigns",
                                 "/api/campaigns/campaign/*",
+                                "/api/campaigns/getUser/*",
                                 "/api/users/register",
                                 "/api/users/login").permitAll()
 

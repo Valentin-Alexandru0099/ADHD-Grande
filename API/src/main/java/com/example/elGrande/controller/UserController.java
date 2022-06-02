@@ -2,7 +2,7 @@ package com.example.elGrande.controller;
 
 import com.example.elGrande.entity.User;
 import com.example.elGrande.security.JWTTokenHelper;
-import com.example.elGrande.security.LoginResponse;
+import com.example.elGrande.model.LoginResponse;
 import com.example.elGrande.security.AuthenticationRequest;
 import com.example.elGrande.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;

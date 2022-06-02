@@ -16,7 +16,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Data
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -29,16 +29,19 @@ public class User implements UserDetails {
     private String password;
     private String email;
     @ElementCollection(fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<String> roles = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "user",
             orphanRemoval = true)
+    @JsonIgnore
     private List<Campaign> campaignList;
 
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "user",
             orphanRemoval = true)
+    @JsonIgnore
     private List<Opinion> opinionList;
 
     public void addCampaign(Campaign campaign){
@@ -65,11 +68,9 @@ public class User implements UserDetails {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", campaignList=" + campaignList +
-                ", opinionList=" + opinionList +
                 '}';
     }
-
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
