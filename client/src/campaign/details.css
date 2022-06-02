@@ -1,0 +1,96 @@
+div.detail-workspace{
+    display: flex;
+    justify-content: space-between;
+    margin: 1%;
+    align-items: flex-start;
+}
+
+
+div.campaign-payment{
+    background-color: whitesmoke;
+    padding: 1%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+div.campaign-payment h1,button.payment-btn,h4{
+    margin-bottom: 10% ;
+}
+
+
+div.form-check:hover{
+    box-shadow: 10px 10px 100px black;
+    background-color: gray;
+    zoom: 110%;
+    border-radius: 10%;
+}
+
+
+div.form-check:hover label{
+    color:aqua;
+    zoom: 110%;
+}
+
+div.payment-history{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+div.history.card{
+    margin-bottom: 5%;
+    
+}
+
+div.camapign-details{
+    text-align: center;
+    background-color: whitesmoke;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+div.bar{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 5%;
+}
+
+img.photo{
+    margin-left: 5%;
+}
+
+div.description{
+    padding: 5%;
+}
+
+div.opinion-workspace{
+    display:  flex;
+    flex-direction: column;
+    margin-bottom: 1%;
+    width: 75%;
+    text-align: center;
+    margin-left: 10%;
+}
+
+div.opinion-card{
+    margin: 1px;
+}
+
+h2.opinion-title{
+    text-align: center;
+    margin: 1%;
+}
+
+button.add-opinion{
+    width: 15%;
+    padding: 1%;
+    margin-left: 42.5%;
+    margin-bottom: 1%;
+}
+
+div.opinion-card-head{
+    text-align: start;
+}

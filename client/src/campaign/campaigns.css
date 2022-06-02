@@ -1,0 +1,34 @@
+.campaigns_workspace{
+    display: flex;
+    margin: 5%;
+}
+
+div.campaign-card{
+    text-align: center;
+    width: 70%;
+}
+
+div.card-title.h5{
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+}
+
+.redirect-button, .delete-button{
+    width: 25%;
+    margin-left: 38%;
+    margin-bottom: 1%;
+}
+
+button.add-campaign{
+    margin-left: 42.5%;
+    margin-top: 1%;
+}
+
+div.delete-status{
+    font-size: 200%;
+    font-style: italic;
+    text-align: center;
+    color: red;
+    display: none;
+}
