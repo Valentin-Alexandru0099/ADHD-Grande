@@ -40,6 +40,11 @@ public class User implements UserDetails {
             orphanRemoval = true)
     private List<Opinion> opinionList;
 
+    public void addCampaign(Campaign campaign){
+        campaignList.add(campaign);
+        campaign.setUser(this);
+    }
+
     @Override
     public String toString() {
         return "User{" +

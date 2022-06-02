@@ -1,7 +1,9 @@
 package com.example.elGrande.controller;
 
 import com.example.elGrande.entity.Campaign;
+import com.example.elGrande.entity.User;
 import com.example.elGrande.service.CampaignService;
+import com.example.elGrande.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,9 @@ import java.util.List;
 @CrossOrigin("http://localhost:3000/")
 @RequestMapping("api/campaigns")
 public class CampaignController {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private CampaignService campaignService;
@@ -30,9 +35,9 @@ public class CampaignController {
         return campaignService.getCampaign(campaignId);
     }
 
-    @PostMapping(value = "/add-campaign")
-    public void addCampaign(@RequestBody Campaign campaign) {
-        campaignService.addCampaign(campaign);
+    @PostMapping(value = "/add-campaign/{userId}")
+    public void addCampaign(@RequestBody Campaign campaign, @PathVariable Long userId) {
+        userService.addCampaign(campaign, userId);
     }
 
     @DeleteMapping(value = "delete-campaign/{campaignId}")

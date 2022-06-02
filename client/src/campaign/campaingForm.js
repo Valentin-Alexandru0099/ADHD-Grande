@@ -53,7 +53,7 @@ export default function CampaignForm() {
 
     async function addCampaign() {
         if (validateSubmit()) {
-            await axios.post(BASE_API_URL + "campaigns/add-campaign", {
+            await axios.post(BASE_API_URL + "campaigns/add-campaign/" + localStorage.getItem("userId"), {
                 "name": document.getElementById("name").value,
                 "description": document.getElementById("description").value,
                 "targetValue": document.getElementById("targetValue").value,

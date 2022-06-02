@@ -37,12 +37,6 @@ public class CampaignService {
         return opinion;
     }
 
-    public void addCampaign(Campaign campaign) {
-        campaign.setSubmissionTime(LocalDate.now());
-        campaign.setCurrentValue(BigDecimal.valueOf(0));
-        campaignRepository.save(campaign);
-    }
-
     public void deleteCampaign(Long id) {
         campaignRepository.delete(campaignRepository.findById(id).get());
     }
