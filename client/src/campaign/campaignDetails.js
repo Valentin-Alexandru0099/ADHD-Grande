@@ -16,10 +16,23 @@ export default function CampaignDetails() {
     const { id } = useParams();
     const [opinions, setOpinions] = useState([]);
 
-    function redirect(){
+    function redirect() {
         navigate("add-opinion")
-        window.scroll(0,0)
+        window.scroll(0, 0)
     }
+
+
+    // async function deleteCampaign(campaignId) {
+    //     await axios.delete(BASE_API_URL + "campaigns/delete-campaign/" + campaignId, {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Authorization': "Bearer " + localStorage.getItem("token")
+    //         }
+    //     })
+    //         .then(response => {
+    //             console.log(response);
+    //         })
+    // };
 
 
     async function getCampaignData() {
@@ -102,10 +115,10 @@ export default function CampaignDetails() {
                     <h2 className="opinion-title">
                         Opinions:
                     </h2>
-                    <Button className="add-opinion" onClick={redirect} variant="dark">+ Add Opinion +</Button>
+                    {localStorage.getItem("userId") && (<Button className="add-opinion" onClick={redirect} variant="dark">+ Add Opinion +</Button>)}
                     {opinions.map((opinion, index) => {
-                        return(
-                        <OpinionCard data={opinion} campaignId={id} key={index} />)
+                        return (
+                            <OpinionCard data={opinion} campaignId={id} key={index} />)
                     })}
                 </div>
             </Container>

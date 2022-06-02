@@ -6,6 +6,10 @@ import "./navbar.css";
 
 function PageNavBar() {
 
+  function logout() {
+    localStorage.clear();
+  }
+
   return (
     <div>
       <Navbar id="nav" sticky="top" bg="dark" variant="dark">
@@ -30,21 +34,30 @@ function PageNavBar() {
               </Form>
             </Nav>
             <Nav className="user-dropdown">
-            <NavDropdown title={
-              <>
-                <img src={defaultUser} width='25%'></img>&nbsp;
-                Account
-              </>
-            }>
-              <NavDropdown.Item href="/register">Register</NavDropdown.Item>
-              <NavDropdown.Item href="/login">Log in</NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
+              <NavDropdown title={
+                <>
+                  <img src={defaultUser} width='25%'></img>&nbsp;
+                  {
+                    localStorage.getItem("username")
+                      ? ("Hello " + localStorage.getItem("username"))
+                      : ("Account")
+                  }
+                </>
+              }>
+                {
+                  localStorage.getItem("userId")
+                    ? (<NavDropdown.Item onClick={logout} href="/">logout</NavDropdown.Item>)
+                    : (<><NavDropdown.Item href="/register">Register</NavDropdown.Item>
+                      <NavDropdown.Item href="/login">Log in</NavDropdown.Item></>)
+                }
+
+              </NavDropdown>
+            </Nav>
           </Navbar.Collapse>
         </Container>
-        
+
       </Navbar>
-      
+
     </div>);
 };
 

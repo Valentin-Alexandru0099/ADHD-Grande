@@ -14,7 +14,7 @@ div.card-title.h5{
     padding: 1%;
 }
 
-.redirect-button, .delete-button{
+.redirect-button{
     width: 25%;
     margin-left: 38%;
     margin-bottom: 1%;
@@ -23,12 +23,4 @@ div.card-title.h5{
 button.add-campaign{
     margin-left: 42.5%;
     margin-top: 1%;
-}
-
-div.delete-status{
-    font-size: 200%;
-    font-style: italic;
-    text-align: center;
-    color: red;
-    display: none;
 }

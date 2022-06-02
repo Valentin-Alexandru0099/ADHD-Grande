@@ -61,7 +61,7 @@ export default function CampaignForm() {
             }, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': ""//TODO
+                    'Authorization': "Bearer " + localStorage.getItem("token")
                 }
             })
                 .then(response => {
