@@ -10,6 +10,7 @@ import CampaignForm from "./campaign/campaingForm";
 import OpinionForm from "./opinion/opinionForm";
 import RegisterForm from "./user/register";
 import LoginForm from "./user/login";
+import UserPage from "./user/userPage";
 
 
 export const BASE_API_URL = "http://localhost:8080/api/";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/campaigns/campaign/:id/update-opinion/:opinionId" element={<OpinionForm update={true} />} />
           <Route path="/register" element={<RegisterForm />}/>
           <Route path="/login" element={<LoginForm />}/>
+          <Route path="/user/:id" element={<UserPage/>}/>
 
         </Routes>
       </BrowserRouter>

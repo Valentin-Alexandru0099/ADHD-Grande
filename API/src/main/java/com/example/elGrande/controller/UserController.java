@@ -58,4 +58,19 @@ public class UserController {
         response.setUsername(user.getUsername());
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping(value = "user/{userId}")
+    public ResponseEntity<?> getUser(@PathVariable Long userId){
+        User user = userService.getUser(userId);
+        User userObj = (User) userService.loadUserByUsername(user.getUsername());
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(userObj.getId());
+        userInfo.setUsername(userObj.getUsername());
+        userInfo.setEmail(userObj.getEmail());
+        userInfo.setCampaignList(userObj.getCampaignList());
+        userInfo.setOpinionList(userObj.getOpinionList());
+
+        return ResponseEntity.ok(userInfo);
+    }
 }

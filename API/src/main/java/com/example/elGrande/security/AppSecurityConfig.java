@@ -39,7 +39,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/campaigns/get-user-by-campaign/*",
                         "/api/opinions/get-user-by-opinion/*",
                         "/api/users/register",
-                        "/api/users/login").permitAll()
+                        "/api/users/login",
+                        "/api/users/user/*").permitAll()
 
                 )
                 .authorizeRequests((request) -> request.antMatchers(
