@@ -46,6 +46,11 @@ export default function CampaignDetails() {
     };
 
 
+    function updateCampaign(){
+        navigate("/campaigns/update-campaign/" + id )
+    }
+
+
     async function getCampaignData() {
         await axios(BASE_API_URL + "campaigns/campaign/" + id)
             .then((response) => {
@@ -67,7 +72,7 @@ export default function CampaignDetails() {
                         {user ? user.id == localStorage.getItem("userId") && (
                             <div className="user-action">
                                 <Button onClick={deleteCampaign} className="delete-button" variant="danger">Delete</Button>
-                                <Button className="update-button" variant="info">Update</Button>
+                                <Button onClick={updateCampaign} className="update-button" variant="info">Update</Button>
                             </div>
                         ) : (<></>)}
 

@@ -25,7 +25,8 @@ function App() {
           <Route path="/about_us" element={< About />} />
           <Route path="/campaigns" element={< Campaigns />}/>
           <Route path="/campaigns/campaign/:id" element={<CampaignDetails />} />
-          <Route path="/campaigns/add-campaign" element={<CampaignForm />} />
+          <Route path="/campaigns/add-campaign" element={<CampaignForm update={false} />} />
+          <Route path="/campaigns/update-campaign/:id" element={<CampaignForm update={true} />} />
           <Route path="/campaigns/campaign/:id/add-opinion" element={<OpinionForm />} />
           <Route path="/register" element={<RegisterForm />}/>
           <Route path="/login" element={<LoginForm />}/>

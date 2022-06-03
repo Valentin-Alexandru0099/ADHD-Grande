@@ -33,5 +33,13 @@ public class CampaignService {
     public void deleteCampaign(Long id) {
         campaignRepository.delete(campaignRepository.findById(id).get());
     }
+
+    public void updateCampaign(Campaign data, Long id){
+        Campaign campaign = getCampaign(id);
+        campaign.setName(data.getName());
+        campaign.setDescription(data.getDescription());
+        campaign.setTargetValue(data.getTargetValue());
+        campaignRepository.saveAndFlush(campaign);
+    }
 }
 
