@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { BASE_API_URL } from "../App";
 import { BsHammer } from "react-icons/bs";
-
-
+import { useNavigate, useParams } from "react-router";
 
 
 export default function OpinionCard(props) {
 
+    let navigate = useNavigate();
+
+    const { id } = useParams();
     async function deleteOpinion() {
         await axios.delete(BASE_API_URL + "opinions/delete-opinion/" + props.data.id, {
             headers: {
@@ -35,6 +37,10 @@ export default function OpinionCard(props) {
         getUser
     ), []);
 
+    function updateOpinion() {
+        navigate("/campaigns/campaign/" + id + "/update-opinion/" + props.data.id)
+    }
+
 
     return (
         <>
@@ -43,7 +49,7 @@ export default function OpinionCard(props) {
                     {user ? user.id == localStorage.getItem("userId") && (
                         <div className="user-action">
                             <Button className="delete-opinion-button" onClick={deleteOpinion} variant="danger"> X </Button>
-                            <Button className="update-opinion-button" variant="info"><BsHammer /></Button>
+                            <Button className="update-opinion-button" onClick={updateOpinion} variant="info"><BsHammer /></Button>
                         </div>
                     ) : (<></>)}
                     {user && (<div className="opinion-title"><a href={"/user/" + user.id}>{user.username}</a> feels ...</div>)}

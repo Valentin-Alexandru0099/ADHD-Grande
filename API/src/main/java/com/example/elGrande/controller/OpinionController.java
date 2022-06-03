@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.*;
 public class OpinionController {
 
     @Autowired
-    private CampaignService campaignService;
-
-    @Autowired
     private OpinionService opinionService;
 
     @Autowired
@@ -48,5 +45,10 @@ public class OpinionController {
     @DeleteMapping(value = "/delete-opinion/{opinionId}")
     public void deleteOpinion(@PathVariable Long opinionId) {
         opinionService.deleteOpinion(opinionId);
+    }
+
+    @PutMapping(value = "/update-opinion/{opinionId}")
+    public void updateOpinion(@RequestBody Opinion opinion, @PathVariable Long opinionId){
+        opinionService.updateOpinion(opinion, opinionId);
     }
 }

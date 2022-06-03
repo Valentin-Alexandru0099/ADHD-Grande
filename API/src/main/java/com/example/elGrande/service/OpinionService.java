@@ -21,4 +21,9 @@ public class OpinionService {
         Optional<Opinion> opinion = opinionRepository.findById(id);
         return opinion.orElse(null);
     }
+    public void updateOpinion(Opinion data, Long opinionId ){
+        Opinion opinion = getOpinion(opinionId);
+        opinion.setDescription(data.getDescription());
+        opinionRepository.saveAndFlush(opinion);
+    }
 }
