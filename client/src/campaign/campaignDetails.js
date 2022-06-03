@@ -58,9 +58,7 @@ export default function CampaignDetails() {
         getCampaignData();
         getUser();
     }, [])
-
-    console.log(user);
-    console.log(localStorage.getItem("userId"))
+    
     return (
         <>
             <Container >

@@ -101,3 +101,11 @@ button.update-button, button.delete-button{
     margin: 1%;
     padding: 1%;
 }
+
+div.opinion-title, div.user-action{
+    display: inline;
+}
+
+button.delete-opinion-button, button.update-opinion-button{
+    margin: 0.3%;
+}
