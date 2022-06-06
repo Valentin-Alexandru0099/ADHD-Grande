@@ -59,7 +59,7 @@ function PageFooter() {
 
                 <div className="text-center p-3" style={copyRight}>
                     © 2022 Copyright:
-                    <a className="text-white" href="https://codecool.ro/"> Codecool</a>
+                    <a className="text-white" target="_blank" href="https://codecool.ro/"> Codecool</a>
                 </div>
             </MDBFooter>
         </>
