@@ -1,4 +1,8 @@
 import { SocialIcon } from 'react-social-icons';
+import {
+    MDBFooter,
+    MDBRow,
+} from 'mdb-react-ui-kit';
 
 function PageFooter() {
     const mediaLinks = ["https://www.facebook.com", "https://www.twitter.com", "https://www.instagram.com"];
@@ -6,10 +10,9 @@ function PageFooter() {
     const aboutLinks = ["/about_us#our_platform", "/about_us#our_developers", "/about_us#our_mission"];
     const aboutNames = ["Our Platform", "Our Developers", "Our Mission"];
 
-    const contactNames = ["WhatsApp", "", "adhdGRANDE@gmail.com"];
 
     const copyRight = {
-        "background-color": "#1B5E20"
+        backgroundColor: "#1B5E20"
     };
 
     const mediaIconsStyle = {
@@ -25,41 +28,41 @@ function PageFooter() {
     };
 
     return (
-        <section className="">
-            <footer className="bg-success text-white text-center">
-                <div className="container p-4">
-                    <div className="row">
-                        <div className="col-lg-4 col-md-12 mb-4 mb-md-0">
+        <>
+            <MDBFooter className='bg-success text-white text-center'>
+                <div className='container p-4'>
+                    <MDBRow>
+                        <div className='col-lg-4 col-md-12 mb-4 mb-md-0'>
                             <h5 className="text-uppercase">About</h5>
                             {aboutLinks.map((about, index) => <p key={index}><a className="text-white" href={about} key={index}>{aboutNames[index]}</a></p>)}
 
                         </div>
 
-                        <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <div className='col-lg-4 col-md-6 mb-4 mb-md-0'>
                             <h5 className="text-uppercase">Contact</h5>
-                            <p><SocialIcon url="https://wa.me/+40770000000" fgColor="white" target='_blank' defaultSVG={wappIcon} style={mediaIconsStyle}/>
-                            <SocialIcon url="mailto:adhd@gmail.com" fgColor="white" target='_blank' style={mediaIconsStyle}/></p>
+                            <p><SocialIcon url="https://wa.me/+40770000000" fgColor="white" target='_blank' defaultSVG={wappIcon} style={mediaIconsStyle} />
+                                <SocialIcon url="mailto:adhd@gmail.com" fgColor="white" target='_blank' style={mediaIconsStyle} /></p>
                             <p><a className="text-white"
                                 href="https://www.google.com/maps/place/Strada+Semilunei+4,+București+030167/@44.439061,26.1103133,17z/data=!3m1!4b1!4m5!3m4!1s0x40b1ff3720fc05a1:0x916032a35d575c4e!8m2!3d44.439061!4d26.112502"
                                 target='_blank'>Strada Semilunei 4-6, București 020797</a></p>
 
                         </div>
 
-                        <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <div className='col-lg-4 col-md-6 mb-4 mb-md-0'>
                             <h5 className="text-uppercase">Media</h5>
 
                             {mediaLinks.map((media, index) => <SocialIcon url={media} key={index} fgColor="white" style={mediaIconsStyle} target='_blank' />)}
 
                         </div>
-                    </div>
+                    </MDBRow>
                 </div>
 
                 <div className="text-center p-3" style={copyRight}>
                     © 2022 Copyright:
                     <a className="text-white" href="https://codecool.ro/"> Codecool</a>
                 </div>
-            </footer>
-        </section>
+            </MDBFooter>
+        </>
     );
 };
 
