@@ -32,7 +32,7 @@ function PageNavBar() {
 
   return (
     <>
-      <MDBNavbar expand='lg' dark bgColor='success'>
+      <MDBNavbar expand='lg' dark bgColor='success' fixed='top'>
         <MDBContainer fluid>
           <MDBNavbarBrand href='/'>
             <img
@@ -67,8 +67,11 @@ function PageNavBar() {
                   About Us
                 </MDBNavbarLink>
               </MDBNavbarItem>
-              <form className='d-flex input-group w-auto'>
+              <form className='d-flex input w-auto'>
                 <input type='search' className='form-control' placeholder='Search...' aria-label='Search' />
+                <MDBNavbarLink active aria-current='page'>
+                  <i className='fa fa-search'></i>
+                </MDBNavbarLink>
               </form>
             </MDBNavbarNav>
             {
