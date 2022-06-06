@@ -11,6 +11,7 @@ import OpinionForm from "./opinion/opinionForm";
 import RegisterForm from "./user/register";
 import LoginForm from "./user/login";
 import UserPage from "./user/userPage";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 
 
 export const BASE_API_URL = "http://localhost:8080/api/";
