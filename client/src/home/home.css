@@ -1,9 +1,0 @@
-div#count-info{
-    display: flex;
-    justify-content: space-evenly;
-    text-align: center;
-}
-
-button#info-numbers{
-    font-size: 1.25rem;
-}

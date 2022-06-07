@@ -3,8 +3,20 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { BASE_API_URL } from '../App';
 import homeImg from '../image/home_wallpaper.jpg';
-import { MDBCard, MDBBtn, MDBCardOverlay, MDBCardImage, MDBRow } from 'mdb-react-ui-kit';
-import './home.css';
+import infoImg1 from '../image/info1.jpg';
+import infoImg2 from '../image/info2.jpg';
+import {
+  MDBCard,
+  MDBBtn,
+  MDBCardOverlay,
+  MDBCardImage,
+  MDBRow,
+  MDBCol,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+
+} from 'mdb-react-ui-kit';
 
 
 
@@ -14,7 +26,6 @@ function Home() {
 
   const [campaignsCount, setCampaignsCount] = useState(0);
   const [accountsCount, setAccountsCount] = useState(0);
-
 
   function redirectTo(routeName) {
     if (routeName === "campaigns/add-campaign" && !localStorage.getItem("userId")) {
@@ -54,6 +65,31 @@ function Home() {
     justifyContent: 'center'
   }
 
+  const searchInputStyle = {
+    padding: "1%",
+    marginRight: "1%",
+    backgroundColor: 'whitesmoke'
+  }
+
+  const infoContainerStyle = {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    textAlign: 'center'
+  }
+
+  const infoButtonsStyle = {
+    fontSize: '1.25rem'
+
+  }
+
+  const searchTitleStyle = {
+    textAlign: 'center'
+  }
+
+  const infoTextStyle = {
+    margin: '5%'
+  }
+
   return (
     <>
       <MDBCard background='dark' className='text-white'>
@@ -62,65 +98,95 @@ function Home() {
           <MDBBtn rounded color='info' data-aos="fade-down" href='/about_us'> Learn More </MDBBtn>
         </MDBCardOverlay>
       </MDBCard>
-      <div className='container p-4'>
 
-        <MDBRow id='count-info'>
-          <div className='col-lg-2 col-md-12 mb-4 mb-md-0'>
-            <p className="text-uppercase"> Total Campaigns: </p><MDBBtn id='info-numbers' size='lg' rounded color='info' >{campaignsCount}</MDBBtn>
-          </div>
-          <div className='col-lg-2 col-md-12 mb-4 mb-md-0'>
-            <p className="text-uppercase"> Total Accounts: </p><MDBBtn id='info-numbers' size='lg' rounded color='info' >{accountsCount}</MDBBtn>
-          </div>
-        </MDBRow>
+      <div className='container p-5' style={searchTitleStyle}>
+        <h3>Search amoung the {campaignsCount} campaigns available !</h3>
+        <form className='d-flex w-auto'>
+          <input style={searchInputStyle} type='search' className='form-control' placeholder='Search campaign...' aria-label='Search' />
+          <MDBBtn rounded color='info'>Search</MDBBtn>
+        </form>
       </div>
 
+      <div className='container p-5' style={searchTitleStyle}>
+        <h1>What's ADHD GRANDE ?</h1>
+        <p> ADHD GRANDE, it's Alex's first React project where he learn a LOT of new frameworks and tricks. 😁</p>
+      </div>
+
+      <div className='container p-5' style={searchTitleStyle}>
+        <h1>Why ADHD GRANDE ?</h1>
+        <p> It's an easy and fun platform to work with.</p>
+        <p> Enjoy your stay !</p>
+        <p>💚</p>
+      </div>
+
+      <div className='container p-5' data-aos="fade-down">
+        <MDBCard style={searchTitleStyle}>
+          <MDBRow className='g-0'>
+            <MDBCol md='4'>
+              <MDBCardImage src={infoImg1} alt='...' fluid />
+            </MDBCol>
+            <MDBCol md='8'>
+              <MDBCardBody>
+                <MDBCardTitle> Do you have an idea who needs support ? </MDBCardTitle>
+                <MDBCardText style={infoTextStyle}>
+                  With one onclick on the button below you can open a campaign and describe your idea to people
+                  how are willing to invest in <span style={infoButtonsStyle} className='text-uppercase'>you !</span>
+                </MDBCardText>
+                <MDBCardText>
+                  <MDBBtn onClick={()=>{redirectTo("campaigns/add-campaign")}} rounded color='info' style={infoButtonsStyle}>Add Campaign</MDBBtn>
+                </MDBCardText>
+              </MDBCardBody>
+            </MDBCol>
+          </MDBRow>
+        </MDBCard>
+      </div>
+
+      <div className='container p-5' style={searchTitleStyle}>
+        <MDBBtn style={infoButtonsStyle} size='lg' rounded color='success' href='#alternative' > OR </MDBBtn>
+      </div>
+
+      <div className='container p-5' id='alternative' data-aos="fade-up">
+        <MDBCard style={searchTitleStyle}>
+          <MDBRow className='g-0'>
+            <MDBCol md='8'>
+              <MDBCardBody>
+                <MDBCardTitle> Would you like to donate to one of our campaigns ?</MDBCardTitle>
+                <MDBCardText style={infoTextStyle}>
+                  Here you can see and access each and every campaign detail page
+                  and donate to those in need.
+                  <p>Be the <span style={infoButtonsStyle} className="text-uppercase" >supporter</span> someone is looking for</p>
+                </MDBCardText>
+                <MDBCardText>
+                  <MDBBtn onClick={()=>{redirectTo("campaigns")}} rounded color='info' style={infoButtonsStyle}>Campaigns List</MDBBtn>
+                </MDBCardText>
+              </MDBCardBody>
+            </MDBCol>
+            <MDBCol md='4'>
+              <MDBCardImage src={infoImg2} alt='...' fluid />
+            </MDBCol>
+          </MDBRow>
+        </MDBCard>
+      </div>
+
+      <div className='container p-5'>
+        <div data-aos="flip-down" data-aos-duration="2000">
+          <MDBRow style={infoContainerStyle} id='count-info'>
+            <div className='col-lg-2 col-md-12 mb-4 mb-md-0'>
+              <MDBBtn rounded style={{ padding: '12%' }} color='success'>
+                <p className="text-uppercase"> Total Campaigns: </p>
+                <p style={infoButtonsStyle}>{campaignsCount}</p>
+              </MDBBtn>
+            </div>
+            <div className='col-lg-2 col-md-12 mb-4 mb-md-0'>
+              <MDBBtn rounded style={{ padding: '12%' }} color='success'>
+                <p className="text-uppercase"> Total Accounts: </p>
+                <p style={infoButtonsStyle}>{accountsCount}</p>
+              </MDBBtn>
+            </div>
+          </MDBRow>
+        </div>
+      </div>
     </>
-    // <Container>
-    //   <div className="index_page">
-    //     <h1 data-aos="fade-in" data-aos-duration="1200" className="title">&nbsp;ADHD GRANDE Crowdfunding&nbsp;</h1>
-    //   </div>
-    //   <div data-aos="fade-left" data-aos-duration="1200" className='descriptive_div'>
-    //     <div className='workspace_descriptive' onClick={() => redirectTo("/about_us")} >
-    //       The Best Platform For Crowdfunding Of Any Kind.
-    //     </div>
-    //   </div>
-    //   <div className='influence_campaign_workspace'>
-    //     <div data-aos="fade-up-right" data-aos-duration="1200" className="influence_campaign">
-    //       <p>Intereseted in opening a campaign?</p>
-    //       <p className='hide'>Open one NOW:</p>
-    //       <Button className='btn-redirect' variant='dark' onClick={() => redirectTo("campaigns/add-campaign")}>
-    //         <strong>New Campaign</strong>
-    //       </Button>
-    //     </div>
-    //   </div>
-    //   <div className='influence_doante_workspace'>
-    //     <div data-aos="fade-up-left" data-aos-duration="1200" className="influence_donate">
-    //       <p>Or do <strong>YOU</strong> want to <strong>DONATE</strong> to a <strong>CAMPAIGN</strong> ?</p>
-    //       <p className='hide'>Do <strong>IT</strong> right <strong>NOW</strong>:</p>
-    //       <Button className='btn-redirect' variant='dark' onClick={() => redirectTo("/campaigns")}>
-    //         <strong>Campaigns</strong>
-    //       </Button>
-    //     </div>
-    //   </div>
-    //   <div className='info-workspace' data-aos="flip-up" data-aos-duration="1200">
-    //     <div className="information">
-    //       <p>
-    //         Total Accounts on site:
-    //       </p>
-    //       <p className='info-num'>
-    //         {accountsCount}
-    //       </p>
-    //     </div>
-    //     <div data-aos="flip-up" data-aos-duration="2000" className="information">
-    //       <p>
-    //         Total Campaigns on site:
-    //       </p>
-    //       <p className='info-num'>
-    //         {campaignsCount}
-    //       </p>
-    //     </div>
-    //   </div>
-    // </Container>
   );
 };
 
