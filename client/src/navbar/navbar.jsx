@@ -32,7 +32,7 @@ function PageNavBar() {
 
   return (
     <>
-      <MDBNavbar expand='lg' dark bgColor='success' fixed='top'>
+      <MDBNavbar expand='lg' dark bgColor='success'>
         <MDBContainer fluid>
           <MDBNavbarBrand href='/'>
             <img
