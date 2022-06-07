@@ -109,7 +109,7 @@ function Home() {
 
       <div className='container p-5' style={searchTitleStyle}>
         <h1>What's ADHD GRANDE ?</h1>
-        <p> ADHD GRANDE, it's Alex's first React project where he learn a LOT of new frameworks and tricks. 😁</p>
+        <p> ADHD GRANDE, it's Alex's first React project where he's learning a LOT of new frameworks and tricks. 😁</p>
       </div>
 
       <div className='container p-5' style={searchTitleStyle}>
