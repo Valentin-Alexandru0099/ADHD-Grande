@@ -130,7 +130,7 @@ function Home() {
                 <MDBCardTitle> Do you have an idea who needs support ? </MDBCardTitle>
                 <MDBCardText style={infoTextStyle}>
                   With one onclick on the button below you can open a campaign and describe your idea to people
-                  how are willing to invest in <span style={infoButtonsStyle} className='text-uppercase'>you !</span>
+                  who are willing to invest in <span style={infoButtonsStyle} className='text-uppercase'>you !</span>
                 </MDBCardText>
                 <MDBCardText>
                   <MDBBtn onClick={()=>{redirectTo("campaigns/add-campaign")}} rounded color='info' style={infoButtonsStyle}>Add Campaign</MDBBtn>
@@ -154,7 +154,7 @@ function Home() {
                 <MDBCardText style={infoTextStyle}>
                   Here you can see and access each and every campaign detail page
                   and donate to those in need.
-                  <p>Be the <span style={infoButtonsStyle} className="text-uppercase" >supporter</span> someone is looking for</p>
+                  <p>Be the <span style={infoButtonsStyle} className="text-uppercase" >supporter</span> someone is looking for !</p>
                 </MDBCardText>
                 <MDBCardText>
                   <MDBBtn onClick={()=>{redirectTo("campaigns")}} rounded color='info' style={infoButtonsStyle}>Campaigns List</MDBBtn>

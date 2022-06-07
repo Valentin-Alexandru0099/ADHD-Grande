@@ -1,9 +1,13 @@
-import { Container, Button } from "react-bootstrap";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_API_URL } from "../App";
 import CampaignCard from "./campaignCard";
 import { useNavigate } from "react-router";
+import {
+    MDBBtn,
+    MDBContainer,
+
+} from 'mdb-react-ui-kit';
 
 
 function Campaigns() {
@@ -18,24 +22,24 @@ function Campaigns() {
             });
     }
 
-    function redirect(){
+    function redirect() {
         navigate("add-campaign");
-        window.scroll(0,0);
+        window.scroll(0, 0);
     }
 
     useEffect(() => {
         getCampaignData();
     }, [])
 
-    console.log(campaigns)
-
     return (
-        <Container>
-            {localStorage.getItem("userId") && (<Button variant="dark" onClick={redirect} className="add-campaign">+ Add Campaign +</Button>)}
-            {campaigns.map(campaign => (
-                <CampaignCard key={campaign.id} data={campaign} />
-            ))}
-        </Container>
+        <>
+            <MDBContainer breakpoint="sm">
+                {localStorage.getItem("userId") && (<MDBBtn style={{marginTop: '1%'}} rounded color='info' onClick={redirect}> Add Campaign </MDBBtn>)}
+                {campaigns.map(campaign => (
+                    <CampaignCard key={campaign.id} data={campaign} />
+                ))}
+            </MDBContainer>
+        </>
     );
 };
 
