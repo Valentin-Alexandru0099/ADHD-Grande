@@ -29,7 +29,7 @@ function PageFooter() {
 
     return (
         <>
-            <MDBFooter className='bg-success text-white text-center'>
+            <MDBFooter className='bg-success text-white text-center' id='footer'>
                 <div className='container p-4'>
                     <MDBRow>
                         <div className='col-lg-4 col-md-12 mb-4 mb-md-0'>
