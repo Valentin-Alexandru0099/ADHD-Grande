@@ -54,16 +54,14 @@ export default function CampaignCard(props) {
   };
 
   const cardFooterStyle = {
-    backgroundColor: '#1B5E20',
-    color: 'white',
-    textAlign: 'right'
+    textAlign: 'right',
   }
 
   return (
     <>
       <div className='container p-4'>
         <MDBCard>
-          <MDBCardHeader style={{ backgroundColor: 'green', color: 'white' }}>Posted at: {props.data.submissionTime}</MDBCardHeader>
+          <MDBCardHeader style={{ backgroundColor: 'rgba(0, 183, 74)', color: 'white' }}>Posted at: {props.data.submissionTime}</MDBCardHeader>
           <MDBRow className='g-0'>
             <MDBCol md='4'>
               <MDBCardImage style={{ height: '200px' }} src={card_image} alt='...' fluid />
@@ -88,7 +86,7 @@ export default function CampaignCard(props) {
           </MDBRow>
           <MDBCardFooter style={cardFooterStyle}>{user && (
             <>
-              Posted by: <a className="text-white" href={"/user/" + user.id}>{user.username}</a>
+              Posted by: <a className="text-dark" href={"/user/" + user.id}>{user.username}</a>
             </>
           )}</MDBCardFooter>
         </MDBCard>
