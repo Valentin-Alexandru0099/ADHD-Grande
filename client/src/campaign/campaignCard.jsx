@@ -1,5 +1,3 @@
-import { Card, ProgressBar, Button } from "react-bootstrap";
-import "./campaigns.css";
 import card_image from "../image/card_image.jpg";
 import { useNavigate } from "react-router";
 import { useEffect, useState } from "react";
@@ -33,6 +31,7 @@ export default function CampaignCard(props) {
   };
 
   const [user, setUser] = useState();
+  const [targetValue, setTargetValue] = useState();
 
   async function getUser() {
     await axios(BASE_API_URL + "campaigns/get-user-by-campaign/" + props.data.id)
@@ -45,6 +44,7 @@ export default function CampaignCard(props) {
 
   useEffect(() => {
     calculateDifference(props.data.targetValue, props.data.currentValue);
+    setTargetValue(props.data.targetValue.toLocaleString('en-US'));
     getUser();
 
   }, []);
@@ -59,12 +59,11 @@ export default function CampaignCard(props) {
     textAlign: 'right'
   }
 
-
   return (
     <>
       <div className='container p-4'>
         <MDBCard>
-          <MDBCardHeader style={{ backgroundColor: 'green', color: 'white' }}>{props.data.submissionTime}</MDBCardHeader>
+          <MDBCardHeader style={{ backgroundColor: 'green', color: 'white' }}>Posted at: {props.data.submissionTime}</MDBCardHeader>
           <MDBRow className='g-0'>
             <MDBCol md='4'>
               <MDBCardImage style={{ height: '200px' }} src={card_image} alt='...' fluid />
@@ -73,7 +72,7 @@ export default function CampaignCard(props) {
               <MDBCardBody>
                 <MDBCardTitle>{props.data.name}</MDBCardTitle>
                 <MDBCardText>
-                  Current Target: {props.data.targetValue} {props.data.currency}
+                  Target: {targetValue} {props.data.currency}
                 </MDBCardText>
                 <MDBCardText>
                   <MDBProgress height='20'>
