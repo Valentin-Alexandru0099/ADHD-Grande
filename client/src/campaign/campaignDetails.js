@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { BASE_API_URL } from "../App";
 import "./details.css";
 import Form from 'react-bootstrap/Form'
-import photo from "../image/card_image.png";
+import photo from "../image/card_image.jpg";
 import OpinionCard from "../opinion/opinionCard";
 
 export default function CampaignDetails() {
