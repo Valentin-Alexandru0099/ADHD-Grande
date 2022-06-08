@@ -117,6 +117,7 @@ export default function CampaignDetails() {
                                                 Posted at: {campaign.submissionTime}
                                             </MDBCol>
                                             <MDBCol size='md' className='col-example'>
+                                                <MDBBtn size="lg" style={{ margin: '1%' }} rounded color='success' href="#payment"> Payment </MDBBtn>
                                                 {
                                                     user ? user.id == localStorage.getItem("userId") && (
                                                         <>
@@ -156,7 +157,7 @@ export default function CampaignDetails() {
                             </MDBCardBody>
                         </MDBCard>
                     </MDBCol>
-                    <MDBCol md='4' style={{ marginBottom: '1%' }}>
+                    <MDBCol id='payment' md='4' style={{ marginBottom: '1%' }}>
                         <MDBCard style={paymentCardStyle}>
                             <MDBCardBody>
                                 <MDBCardHeader className="h3"> Payment </MDBCardHeader>
