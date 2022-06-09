@@ -1,5 +1,3 @@
-body{
-    /* background-image: url('./image/background.png');
-    background-size: cover; */
-    background-color:lightgray;
-}
+body {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+  }

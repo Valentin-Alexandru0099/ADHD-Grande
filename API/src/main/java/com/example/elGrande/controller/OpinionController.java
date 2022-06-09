@@ -1,10 +1,8 @@
 package com.example.elGrande.controller;
 
-import com.example.elGrande.entity.Campaign;
 import com.example.elGrande.entity.Opinion;
 import com.example.elGrande.entity.User;
 import com.example.elGrande.model.UserInfo;
-import com.example.elGrande.service.CampaignService;
 import com.example.elGrande.service.OpinionService;
 import com.example.elGrande.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,7 @@ public class OpinionController {
     private UserService userService;
 
     @GetMapping(value = "/get-user-by-opinion/{opinionId}")
-    public ResponseEntity<?> getUserForCampaign(@PathVariable Long opinionId){
+    public ResponseEntity<?> getUserForCampaign(@PathVariable Long opinionId) {
         Opinion opinion = opinionService.getOpinion(opinionId);
         User userObj = (User) userService.loadUserByUsername(opinion.getUser().getUsername());
 
@@ -48,7 +46,12 @@ public class OpinionController {
     }
 
     @PutMapping(value = "/update-opinion/{opinionId}")
-    public void updateOpinion(@RequestBody Opinion opinion, @PathVariable Long opinionId){
+    public void updateOpinion(@RequestBody Opinion opinion, @PathVariable Long opinionId) {
         opinionService.updateOpinion(opinion, opinionId);
+    }
+
+    @GetMapping(value = "/{opinionId}")
+    public Opinion getOpinion(@PathVariable Long opinionId) {
+        return opinionService.getOpinion(opinionId);
     }
 }

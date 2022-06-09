@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -19,6 +20,10 @@ public class Opinion {
     private Long id;
 
     private String description;
+    private LocalDate submissionTime;
+
+    @Enumerated(EnumType.ORDINAL)
+    private Emote feeling;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore

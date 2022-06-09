@@ -24,12 +24,16 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public Long getCount() {
         return userRepository.count();
     }
 
     public void addUser(User user) {
-        user.setPassword(passwordEncoder().encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setSubmissionTime(LocalDate.now());
         user.getRoles().add("ROLE_USER");
         userRepository.save(user);
     }
@@ -55,6 +59,7 @@ public class UserService implements UserDetailsService {
         User campaignUser = getUser(campaignUserId);
 
         opinion.setUser(opinionUser);
+        opinion.setSubmissionTime(LocalDate.now());
         campaignUser.addOpinion(campaignId, opinion);
         userRepository.saveAndFlush(campaignUser);
     }
@@ -67,8 +72,5 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User Not Found with userName " + username);
         }
         return user;
-    }
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }

@@ -1,9 +1,10 @@
-select.opinion-select{
+div.opinion-container-tab {
+    text-align: center;
     width: 50%;
 }
 
 @media only screen and (max-width: 600px) {
-    select.opinion-select{
+    div.opinion-container-tab {
         width: 100%;
     }
-  }
+}

@@ -24,6 +24,7 @@ public class OpinionService {
     public void updateOpinion(Opinion data, Long opinionId ){
         Opinion opinion = getOpinion(opinionId);
         opinion.setDescription(data.getDescription());
+        opinion.setFeeling(data.getFeeling());
         opinionRepository.saveAndFlush(opinion);
     }
 }
