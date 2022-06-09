@@ -114,7 +114,7 @@ export default function OpinionCard(props) {
                     </MDBModalContent>
                 </MDBModalDialog>
             </MDBModal>
-            <MDBCard style={{margin: '1%'}}>
+            <MDBCard style={{ margin: '1%' }}>
                 <MDBCardBody>
                     <MDBCardHeader style={opinionHeaderStyle}>
                         <MDBRow>
@@ -148,7 +148,7 @@ export default function OpinionCard(props) {
                     <MDBCardText style={{ marginTop: '1%' }}>
                         {user && (
                             <>
-                                <a className="text-dark" href={"/user/" + user.id}>{user.username}</a> feels {props.data.feeling} {emoji} :
+                                <a className="text-dark" href={"/user/" + user.id}>{user.username}</a> feels {props.data.feeling} {emoji}
                             </>
                         )}
                     </MDBCardText>
