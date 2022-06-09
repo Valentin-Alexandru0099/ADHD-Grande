@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BASE_API_URL } from "../App";
-import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
 import {
     MDBBtn,
     MDBContainer,
@@ -16,11 +16,11 @@ import "./opinionForm.css"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function OpinionForm() {
+export default function OpinionForm(props) {
 
     let navigate = useNavigate();
     const queryParams = new URLSearchParams(window.location.search);
-    console.log()
+    const { id, opinionId } = useParams();
 
     const [formValues, setFormValues] = useState({
         description: '',
@@ -36,11 +36,21 @@ export default function OpinionForm() {
         }));
     };
 
+    async function getData() {
+        await axios(BASE_API_URL + "opinions/" + opinionId)
+            .then((response) => {
+                setFormValues({
+                    'description': response.data.description,
+                    'feeling': response.data.feeling
+                })
+            });
+    };
+
     async function addOpinion() {
         await axios.post(
             BASE_API_URL
             + "opinions/add-opinion/"
-            + queryParams.get('campaignId') + "/"
+            + id + "/"
             + localStorage.getItem("userId") + "/"
             + queryParams.get('campaignUserId'),
             {
@@ -68,10 +78,37 @@ export default function OpinionForm() {
             ).finally(navigate("/campaigns/campaign/" + queryParams.get('campaignId')));
     };
 
+    async function updateOpinion() {
+        await axios.put(BASE_API_URL + "opinions/update-opinion/" + opinionId,
+            {
+                "description": formValues.description,
+                "feeling": formValues.feeling
+            }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem("token")
+            }
+        })
+            .then(toast.success('Opinion updated!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            }))
+            .finally(navigate("/campaigns/campaign/" + id));
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
         if (validValues()) {
-            addOpinion();
+            if (props.update) {
+                updateOpinion();
+            } else {
+                addOpinion();
+            }
         } else {
             toast.error('Something went wrong, please try again!', {
                 position: "top-right",
@@ -115,6 +152,13 @@ export default function OpinionForm() {
         justifyContent: 'center'
     }
 
+    useEffect(() => {
+        console.log(props);
+        if (props.update) {
+            getData();
+        }
+    }, []);
+
     return (
         <>
             <MDBContainer>
@@ -122,10 +166,10 @@ export default function OpinionForm() {
                     <MDBCardBody>
                         <MDBCardText>
                             <form style={{ textAlign: 'center', margin: '1%' }} onSubmit={handleSubmit}>
-                                <MDBTextArea style={formChildsStyle} onChange={handleChange} name="description" label='Message' id='textAreaExample' rows={4} />
+                                <MDBTextArea style={formChildsStyle} value={formValues.description} onChange={handleChange} name="description" label='Message' id='textAreaExample' rows={4} />
                                 <label style={formChildsStyle}> How do you feel about this campaign? </label>
                                 <div style={selectStyle}>
-                                    <Form.Select onChange={handleChange} name="feeling" className="opinion-select" style={formChildsStyle} aria-label="Default select example">
+                                    <Form.Select value={formValues.feeling} onChange={handleChange} name="feeling" className="opinion-select" style={formChildsStyle} aria-label="Default select example">
                                         {options.map((option, index) => {
                                             return (
                                                 <option key={index} value={option.value}>{option.label}</option>

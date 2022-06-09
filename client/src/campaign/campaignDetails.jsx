@@ -48,7 +48,7 @@ export default function CampaignDetails() {
 
 
     function redirect() {
-        navigate("add-opinion?campaignId=" + campaign.id + "&campaignUserId=" + user.id)
+        navigate("add-opinion?campaignUserId=" + user.id)
         window.scroll(0, 0)
     }
 

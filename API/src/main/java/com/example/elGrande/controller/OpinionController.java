@@ -20,24 +20,23 @@ public class OpinionController {
     @Autowired
     private UserService userService;
 
-        @GetMapping(value = "/get-user-by-opinion/{opinionId}")
-        public ResponseEntity<?> getUserForCampaign(@PathVariable Long opinionId){
-            Opinion opinion = opinionService.getOpinion(opinionId);
-            User userObj = (User) userService.loadUserByUsername(opinion.getUser().getUsername());
+    @GetMapping(value = "/get-user-by-opinion/{opinionId}")
+    public ResponseEntity<?> getUserForCampaign(@PathVariable Long opinionId) {
+        Opinion opinion = opinionService.getOpinion(opinionId);
+        User userObj = (User) userService.loadUserByUsername(opinion.getUser().getUsername());
 
-            UserInfo userInfo = new UserInfo();
-            userInfo.setId(userObj.getId());
-            userInfo.setUsername(userObj.getUsername());
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(userObj.getId());
+        userInfo.setUsername(userObj.getUsername());
 
-            return ResponseEntity.ok(userInfo);
-        }
+        return ResponseEntity.ok(userInfo);
+    }
 
     @PostMapping(value = "/add-opinion/{campaignId}/{userId}/{campaignUserId}")
     public void addOpinion(@RequestBody Opinion opinion,
                            @PathVariable Long campaignId,
                            @PathVariable Long userId,
                            @PathVariable Long campaignUserId) {
-        System.out.println(opinion.getFeeling());
         userService.addOpinion(opinion, campaignId, userId, campaignUserId);
     }
 
@@ -47,7 +46,12 @@ public class OpinionController {
     }
 
     @PutMapping(value = "/update-opinion/{opinionId}")
-    public void updateOpinion(@RequestBody Opinion opinion, @PathVariable Long opinionId){
+    public void updateOpinion(@RequestBody Opinion opinion, @PathVariable Long opinionId) {
         opinionService.updateOpinion(opinion, opinionId);
+    }
+
+    @GetMapping(value = "/{opinionId}")
+    public Opinion getOpinion(@PathVariable Long opinionId) {
+        return opinionService.getOpinion(opinionId);
     }
 }
