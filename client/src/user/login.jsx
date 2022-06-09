@@ -11,7 +11,7 @@ import {
     MDBContainer,
 
 } from 'mdb-react-ui-kit';
-import './login.css';
+import './login-register.css';
 import { toast } from "react-toastify";
 import { useState } from "react";
 
@@ -111,7 +111,7 @@ export default function LoginForm() {
                             </MDBCol>
                         </MDBRow>
 
-                        <MDBBtn id="login-button" type='submit' className='mb-4'>
+                        <MDBBtn color="success" id="login-button" type='submit' className='mb-4'>
                             Login
                         </MDBBtn>
 
