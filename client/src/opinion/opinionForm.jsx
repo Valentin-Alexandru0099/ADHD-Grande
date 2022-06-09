@@ -75,7 +75,7 @@ export default function OpinionForm(props) {
                     draggable: true,
                     progress: undefined,
                 })
-            ).finally(navigate("/campaigns/campaign/" + queryParams.get('campaignId')));
+            ).finally(navigate("/campaigns/campaign/" + id));
     };
 
     async function updateOpinion() {
