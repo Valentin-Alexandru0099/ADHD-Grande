@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BASE_API_URL } from "../App";
-import "./details.css";
 import photo from "../image/card_image.jpg";
 import OpinionCard from '../opinion/opinionCard';
 

@@ -53,10 +53,7 @@ export default function OpinionForm(props) {
             + id + "/"
             + localStorage.getItem("userId") + "/"
             + queryParams.get('campaignUserId'),
-            {
-                "description": formValues.description,
-                "feeling": formValues.feeling
-            }, {
+            formValues, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': "Bearer " + localStorage.getItem("token")
@@ -153,7 +150,6 @@ export default function OpinionForm(props) {
     }
 
     useEffect(() => {
-        console.log(props);
         if (props.update) {
             getData();
         }
@@ -178,7 +174,7 @@ export default function OpinionForm(props) {
                                     </Form.Select>
                                 </div>
                                 <MDBBtn style={submitButtonStyle} color="success" type='submit' className='mb-4'>
-                                    Post
+                                    {props.update ? (<>Update</>) : (<>Post</>)}
                                 </MDBBtn>
                             </form>
                         </MDBCardText>

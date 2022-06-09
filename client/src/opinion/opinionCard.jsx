@@ -93,7 +93,6 @@ export default function OpinionCard(props) {
         color: "white",
     }
 
-    console.log(props.data)
     return (
         <>
             <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
@@ -115,7 +114,7 @@ export default function OpinionCard(props) {
                     </MDBModalContent>
                 </MDBModalDialog>
             </MDBModal>
-            <MDBCard>
+            <MDBCard style={{margin: '1%'}}>
                 <MDBCardBody>
                     <MDBCardHeader style={opinionHeaderStyle}>
                         <MDBRow>
