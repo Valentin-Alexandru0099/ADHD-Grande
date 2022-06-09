@@ -14,6 +14,7 @@ import UserPage from "./user/userPage";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -26,6 +27,17 @@ function App() {
   return (
     <div className="App">
       <PageNavBar />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <BrowserRouter>
         <Routes>
 

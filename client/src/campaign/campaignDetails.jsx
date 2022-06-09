@@ -38,6 +38,7 @@ export default function CampaignDetails() {
     const [percent, setPercent] = useState(0);
 
 
+
     async function getUser() {
         await axios(BASE_API_URL + "campaigns/get-user-by-campaign/" + id)
             .then((response) => {
@@ -47,7 +48,7 @@ export default function CampaignDetails() {
 
 
     function redirect() {
-        navigate("add-opinion")
+        navigate("add-opinion?campaignId=" + campaign.id + "&campaignUserId=" + user.id)
         window.scroll(0, 0)
     }
 
@@ -90,14 +91,15 @@ export default function CampaignDetails() {
         getCampaignData();
         getUser();
         calculateDifference(campaign.targetValue, campaign.currentValue);
-
     }, []);
+
     const paymentCardStyle = {
         width: '75%',
         textAlign: 'center',
         left: '12%',
         marginTop: '1%'
     }
+
     return (
         <>
             <MDBContainer style={{ textAlign: 'center', marginTop: '1%', marginBottom: '1%' }}>

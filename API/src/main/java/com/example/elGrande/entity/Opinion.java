@@ -21,6 +21,8 @@ public class Opinion {
 
     private String description;
     private LocalDate submissionTime;
+
+    @Enumerated(EnumType.ORDINAL)
     private Emote feeling;
 
     @ManyToOne(fetch = FetchType.LAZY)

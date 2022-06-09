@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { BASE_API_URL } from "../App";
 import { useNavigate, useParams } from "react-router";
 import {
-    MDBBtn,
     MDBCard,
     MDBCardBody,
     MDBCardText,
@@ -13,9 +12,16 @@ import {
     MDBDropdownMenu,
     MDBDropdownItem,
     MDBDropdownLink,
-    MDBIcon,
     MDBRow,
     MDBCol,
+    MDBBtn,
+    MDBModal,
+    MDBModalDialog,
+    MDBModalContent,
+    MDBModalHeader,
+    MDBModalTitle,
+    MDBModalBody,
+    MDBModalFooter,
 
 } from 'mdb-react-ui-kit';
 
@@ -25,20 +31,46 @@ export default function OpinionCard(props) {
 
     const [user, setUser] = useState();
     const { id } = useParams();
+    const [emoji, setEmoji] = useState();
+    const [basicModal, setBasicModal] = useState(false);
+    const toggleShow = () => setBasicModal(!basicModal);
 
-    async function deleteOpinion() {
+
+    async function handleDelete() {
+        toggleShow();
         await axios.delete(BASE_API_URL + "opinions/delete-opinion/" + props.data.id, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': "Bearer " + localStorage.getItem("token")
             }
         })
-            .then(response => {
-                console.log(response);
-            })
-            .finally(window.location.reload())
+            .finally(
+                window.location.reload()
+            );
     };
 
+    function addEmoji() {
+        switch (props.data.feeling) {
+            case "HAPPY":
+                setEmoji('😄');
+                break;
+            case "SAD":
+                setEmoji('🙁');
+                break;
+            case "ANGRY":
+                setEmoji('😡');
+                break;
+            case "EXCITED":
+                setEmoji('🤩');
+                break;
+            case "CONFUSED":
+                setEmoji('🤨');
+                break;
+            case "WONDERING":
+                setEmoji('🤔');
+                break;
+        };
+    };
 
     async function getUser() {
         await axios(BASE_API_URL + "opinions/get-user-by-opinion/" + props.data.id)
@@ -47,9 +79,10 @@ export default function OpinionCard(props) {
             });
     }
 
-    useEffect(() => (
-        getUser
-    ), []);
+    useEffect(() => {
+        getUser();
+        addEmoji();
+    }, []);
 
     function updateOpinion() {
         navigate("/campaigns/campaign/" + id + "/update-opinion/" + props.data.id)
@@ -59,8 +92,29 @@ export default function OpinionCard(props) {
         backgroundColor: '#39c0ed',
         color: "white",
     }
+
+    console.log(props.data)
     return (
         <>
+            <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
+                <MDBModalDialog centered >
+                    <MDBModalContent>
+                        <MDBModalHeader style={{ backgroundColor: 'rgb(57, 192, 237)', color: 'white' }}>
+                            <MDBModalTitle >Hold up!</MDBModalTitle>
+                            <MDBBtn className='btn-close' color='white' onClick={toggleShow}></MDBBtn>
+                        </MDBModalHeader>
+                        <MDBModalBody>You are about to delete an opinion!</MDBModalBody>
+                        <MDBModalBody>Are you sure?</MDBModalBody>
+
+                        <MDBModalFooter>
+                            <MDBBtn color='success' onClick={toggleShow}>
+                                No
+                            </MDBBtn>
+                            <MDBBtn color="danger" onClick={handleDelete} > Yes </MDBBtn>
+                        </MDBModalFooter>
+                    </MDBModalContent>
+                </MDBModalDialog>
+            </MDBModal>
             <MDBCard>
                 <MDBCardBody>
                     <MDBCardHeader style={opinionHeaderStyle}>
@@ -78,7 +132,7 @@ export default function OpinionCard(props) {
                                                         <MDBDropdownLink onClick={updateOpinion}>Update</MDBDropdownLink>
                                                     </MDBDropdownItem>
                                                     <MDBDropdownItem>
-                                                        <MDBDropdownLink onClick={deleteOpinion}>Delete</MDBDropdownLink>
+                                                        <MDBDropdownLink onClick={toggleShow}>Delete</MDBDropdownLink>
                                                     </MDBDropdownItem>
                                                 </MDBDropdownMenu>
                                             </MDBDropdown>
@@ -87,7 +141,7 @@ export default function OpinionCard(props) {
                                 }
                             </MDBCol>
                             <MDBCol md='10' className='col-example'>
-                                2000-01-01{props.data.submissionTime}
+                                {props.data.submissionTime}
                             </MDBCol>
                         </MDBRow>
 
@@ -95,7 +149,7 @@ export default function OpinionCard(props) {
                     <MDBCardText style={{ marginTop: '1%' }}>
                         {user && (
                             <>
-                                <a className="text-dark" href={"/user/" + user.id}>{user.username}</a> feels ... :
+                                <a className="text-dark" href={"/user/" + user.id}>{user.username}</a> feels {props.data.feeling} {emoji} :
                             </>
                         )}
                     </MDBCardText>

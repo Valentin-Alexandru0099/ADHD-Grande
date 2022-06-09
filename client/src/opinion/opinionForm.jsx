@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BASE_API_URL } from "../App";
-import { useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { useState } from "react";
 import {
     MDBBtn,
     MDBContainer,
@@ -13,13 +13,14 @@ import {
 } from 'mdb-react-ui-kit';
 import Form from 'react-bootstrap/Form';
 import "./opinionForm.css"
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function OpinionForm() {
 
     let navigate = useNavigate();
-    const { id, opinionId } = useParams();
+    const queryParams = new URLSearchParams(window.location.search);
+    console.log()
 
     const [formValues, setFormValues] = useState({
         description: '',
@@ -35,9 +36,42 @@ export default function OpinionForm() {
         }));
     };
 
+    async function addOpinion() {
+        await axios.post(
+            BASE_API_URL
+            + "opinions/add-opinion/"
+            + queryParams.get('campaignId') + "/"
+            + localStorage.getItem("userId") + "/"
+            + queryParams.get('campaignUserId'),
+            {
+                "description": formValues.description,
+                "feeling": formValues.feeling
+            }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + localStorage.getItem("token")
+            }
+        })
+            .then((response) => {
+                console.log(response);
+            })
+            .then(
+                toast.success('Opinion added!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                })
+            ).finally(navigate("/campaigns/campaign/" + queryParams.get('campaignId')));
+    };
+
     function handleSubmit(e) {
         e.preventDefault();
         if (validValues()) {
+            addOpinion();
         } else {
             toast.error('Something went wrong, please try again!', {
                 position: "top-right",
@@ -81,22 +115,8 @@ export default function OpinionForm() {
         justifyContent: 'center'
     }
 
-    useEffect(() => {
-    }, []);
-
     return (
         <>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
             <MDBContainer>
                 <MDBCard style={{ margin: '10%' }}>
                     <MDBCardBody>

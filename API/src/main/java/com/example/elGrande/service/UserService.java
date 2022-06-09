@@ -54,11 +54,11 @@ public class UserService implements UserDetailsService {
     }
 
     public void addOpinion(Opinion opinion,Long campaignId, Long userId, Long campaignUserId){
-        opinion.setSubmissionTime(LocalDate.now());
         User opinionUser = getUser(userId);
         User campaignUser = getUser(campaignUserId);
 
         opinion.setUser(opinionUser);
+        opinion.setSubmissionTime(LocalDate.now());
         campaignUser.addOpinion(campaignId, opinion);
         userRepository.saveAndFlush(campaignUser);
     }
