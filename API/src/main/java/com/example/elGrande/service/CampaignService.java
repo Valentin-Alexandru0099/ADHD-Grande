@@ -6,8 +6,6 @@ import com.example.elGrande.repository.CampaignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +29,7 @@ public class CampaignService {
     }
 
     public void deleteCampaign(Long id) {
-        campaignRepository.delete(campaignRepository.findById(id).get());
+        campaignRepository.delete(getCampaign(id));
     }
 
     public void updateCampaign(Campaign data, Long id){

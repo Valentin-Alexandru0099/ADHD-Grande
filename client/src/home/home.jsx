@@ -100,7 +100,7 @@ function Home() {
       </MDBCard>
 
       <div className='container p-5' style={searchTitleStyle}>
-        <h3>Search amoung the {campaignsCount} campaigns available !</h3>
+        <h3>Search among the {campaignsCount} campaigns available !</h3>
         <form className='d-flex w-auto'>
           <input style={searchInputStyle} type='search' className='form-control' placeholder='Search campaign...' aria-label='Search' />
           <MDBBtn rounded color='info'>Search</MDBBtn>
