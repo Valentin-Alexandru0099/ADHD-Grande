@@ -19,7 +19,9 @@ public class PaymentController {
     @PostMapping(value = "create-payment-intent")
     public ResponseEntity<?> createPaymentIntent(@RequestBody Payment payment) throws StripeException {
         Stripe.apiKey = "sk_test_51L8sK5LlNBHeDk8KMqkuAHFgZ2HI9hMbBU6pOceqvBQkQxf4NCT7VbjC34BSNaSopjAU0qXOeK5X7WNLDytLbUIn00CZcPDYRV";
-
+        System.out.println(payment);
+        System.out.println(payment.getCurrency());
+        System.out.println(payment.getValue());
         PaymentIntentCreateParams params =
                 PaymentIntentCreateParams.builder()
                         .setAmount(payment.getValue().longValue())
@@ -35,7 +37,7 @@ public class PaymentController {
         // Create a PaymentIntent with the order amount and currency
         PaymentIntent paymentIntent = PaymentIntent.create(params);
 
-         PaymentResponse paymentResponse = new PaymentResponse(paymentIntent.getClientSecret());
+        PaymentResponse paymentResponse = new PaymentResponse(paymentIntent.getClientSecret());
         return ResponseEntity.ok(paymentResponse);
     }
 

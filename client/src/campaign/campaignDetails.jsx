@@ -97,7 +97,11 @@ export default function CampaignDetails() {
         textAlign: 'center',
         left: '12%',
         marginTop: '1%'
-    }
+    };
+
+    function redirect() {
+        navigate("payment?value=" + 1 + "&currency=" + campaign.currency);
+    };
 
     return (
         <>
@@ -148,7 +152,7 @@ export default function CampaignDetails() {
                                     {
                                         opinions.length ? (
                                             opinions.map(opinion => (
-                                                <OpinionCard data={opinion} />
+                                                <OpinionCard key={opinion.id} data={opinion} />
                                             ))
                                         ) : (<>No opinion shared yet.</>)
                                     }
@@ -175,7 +179,7 @@ export default function CampaignDetails() {
                                     <MDBCardTitle><MDBIcon fas icon="chart-line" /> 10 Contributions</MDBCardTitle>
                                 </MDBCardFooter>
                                 <MDBCardFooter>
-                                    <MDBBtn style={{ padding: '8%' }} color="success" rounded> Contribute <MDBIcon fas size="lg" icon="hand-holding-usd" /> </MDBBtn>
+                                    <MDBBtn style={{ padding: '8%' }} onClick={redirect} color="success" rounded> Contribute <MDBIcon fas size="lg" icon="hand-holding-usd" /> </MDBBtn>
                                 </MDBCardFooter>
                                 <MDBCardFooter>
                                     <MDBCardTitle>Payment History</MDBCardTitle>

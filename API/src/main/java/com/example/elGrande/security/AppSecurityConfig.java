@@ -41,7 +41,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/users/register",
                         "/api/users/login",
                         "/api/users/user/*",
-                        "/api/opinions/*").permitAll()
+                        "/api/opinions/*",
+                        "/api/payment/create-payment-intent").permitAll()
 
                 )
                 .authorizeRequests((request) -> request.antMatchers(

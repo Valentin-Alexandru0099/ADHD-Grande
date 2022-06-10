@@ -15,7 +15,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { ToastContainer } from 'react-toastify';
-
+import PaymentPage from "./payment/payment";
 
 
 export const BASE_API_URL = "http://localhost:8080/api/";
@@ -52,6 +52,7 @@ function App() {
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/user/:id" element={<UserPage />} />
+          <Route path="/campaigns/campaign/:id/payment" element={<PaymentPage/>}/>
 
         </Routes>
       </BrowserRouter>
