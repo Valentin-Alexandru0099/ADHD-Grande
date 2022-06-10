@@ -48,6 +48,12 @@ public class User implements UserDetails {
     @JsonIgnore
     private List<Opinion> opinionList;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "user",
+            orphanRemoval = true)
+    @JsonIgnore
+    private List<Payment> paymentList;
+
     public void addCampaign(Campaign campaign) {
         campaignList.add(campaign);
         campaign.setUser(this);
