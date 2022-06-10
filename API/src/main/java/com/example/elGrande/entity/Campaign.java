@@ -54,6 +54,11 @@ public class Campaign {
         opinion.setCampaign(this);
     }
 
+    public void addPayment(Payment payment) {
+        this.payments.add(payment);
+        payment.getCampaigns().add(this);
+    }
+
     public void removeOpinion(Opinion opinion) {
         opinionList.remove(opinion);
         opinion.setCampaign(null);

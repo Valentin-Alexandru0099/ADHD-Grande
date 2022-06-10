@@ -18,6 +18,8 @@ export default function CheckoutForm() {
     const elements = useElements();
 
     const { id } = useParams();
+    const queryParams = new URLSearchParams(window.location.search);
+
 
     const [message, setMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -68,7 +70,10 @@ export default function CheckoutForm() {
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
-                return_url: "http://localhost:3000/campaigns/campaign/" + id,
+                return_url: "http://localhost:3000/campaigns/campaign/"
+                    + id + "/" +
+                    queryParams.get("value") + "/" +
+                    queryParams.get("currency"),
             },
         });
         // This point will only be reached if there is an immediate error when
@@ -98,11 +103,6 @@ export default function CheckoutForm() {
                                     {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
                                 </span>
                             </MDBBtn>
-                            {/* <button disabled={isLoading || !stripe || !elements} id="submit">
-                        <span id="button-text">
-                            {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-                        </span>
-                    </button> */}
                             {/* Show any error or success messages */}
                             {message && <div id="payment-message">{message}</div>}
                         </form>

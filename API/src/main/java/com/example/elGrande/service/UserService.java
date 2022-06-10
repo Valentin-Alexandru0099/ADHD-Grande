@@ -2,6 +2,7 @@ package com.example.elGrande.service;
 
 import com.example.elGrande.entity.Campaign;
 import com.example.elGrande.entity.Opinion;
+import com.example.elGrande.entity.Payment;
 import com.example.elGrande.entity.User;
 import com.example.elGrande.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,16 @@ public class UserService implements UserDetailsService {
         opinion.setSubmissionTime(LocalDate.now());
         campaignUser.addOpinion(campaignId, opinion);
         userRepository.saveAndFlush(campaignUser);
+    }
+
+    public void addPayment(Payment payment, Long userId, Campaign campaign){
+        User user = getUser(userId);
+
+        payment.setSubmissionTime(LocalDate.now());
+
+        campaign.addPayment(payment);
+        user.addPayment(payment);
+        userRepository.saveAndFlush(user);
     }
 
     @Override

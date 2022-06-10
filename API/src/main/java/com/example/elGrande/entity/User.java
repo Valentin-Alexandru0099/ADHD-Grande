@@ -59,6 +59,12 @@ public class User implements UserDetails {
         campaign.setUser(this);
     }
 
+    public void addPayment(Payment payment) {
+        paymentList.add(payment);
+        payment.setUser(this);
+    }
+
+
     public void addOpinion(Long campaignId, Opinion opinion) {
         for (Campaign campaign : campaignList) {
             if (Objects.equals(campaign.getId(), campaignId)) {

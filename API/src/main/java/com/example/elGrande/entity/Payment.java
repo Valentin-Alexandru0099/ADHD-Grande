@@ -5,7 +5,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Currency;
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
@@ -22,6 +24,8 @@ public class Payment {
 
     private BigDecimal value;
     private Currency currency;
+    private LocalDate submissionTime;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -29,5 +33,5 @@ public class Payment {
 
     @ManyToMany(mappedBy = "payments")
     @JsonIgnore
-    private Set<Campaign> campaigns;
+    private Set<Campaign> campaigns = new HashSet<>();
 }
