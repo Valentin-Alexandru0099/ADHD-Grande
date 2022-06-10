@@ -23,6 +23,7 @@ import {
 
 
 } from 'mdb-react-ui-kit';
+import PaymentCard from "../payment/paymentCard";
 
 
 export default function CampaignDetails() {
@@ -35,6 +36,8 @@ export default function CampaignDetails() {
     const [currentValue, setCurrentValue] = useState();
     const [user, setUser] = useState();
     const [percent, setPercent] = useState(0);
+    const [payments, setPayments] = useState([]);
+    const [campaignUserId, setCampaingUserId] = useState();
 
 
 
@@ -42,6 +45,7 @@ export default function CampaignDetails() {
         await axios(BASE_API_URL + "campaigns/get-user-by-campaign/" + id)
             .then((response) => {
                 setUser(response.data);
+                setCampaingUserId(response.data.id);
             });
     }
 
@@ -82,6 +86,7 @@ export default function CampaignDetails() {
                 setOpinions(response.data.opinionList);
                 setTargetValue(response.data.targetValue.toLocaleString('en-US'));
                 setCurrentValue(response.data.currentValue.toLocaleString('en-US'));
+                setPayments(response.data.payments);
                 calculateDifference(response.data.targetValue, response.data.currentValue);
             });
     };
@@ -92,12 +97,17 @@ export default function CampaignDetails() {
         calculateDifference(campaign.targetValue, campaign.currentValue);
     }, []);
 
+    console.log(campaign)
     const paymentCardStyle = {
         width: '75%',
         textAlign: 'center',
         left: '12%',
         marginTop: '1%'
-    }
+    };
+
+    function redirect() {
+        navigate("payment?value=" + 1000 + "&currency=" + campaign.currency);
+    };
 
     return (
         <>
@@ -148,7 +158,7 @@ export default function CampaignDetails() {
                                     {
                                         opinions.length ? (
                                             opinions.map(opinion => (
-                                                <OpinionCard data={opinion} />
+                                                <OpinionCard key={opinion.id} data={opinion} />
                                             ))
                                         ) : (<>No opinion shared yet.</>)
                                     }
@@ -172,35 +182,42 @@ export default function CampaignDetails() {
                                     </MDBProgress>
                                 </MDBCardText>
                                 <MDBCardFooter>
-                                    <MDBCardTitle><MDBIcon fas icon="chart-line" /> 10 Contributions</MDBCardTitle>
+                                    <MDBCardTitle>
+                                        {
+                                            payments.length !== 0
+                                                ? (
+                                                    <>
+                                                        <MDBIcon fas icon="chart-line" />  {payments.length} Contributions
+                                                    </>
+                                                )
+                                                : (
+                                                    <>
+                                                        No Contributions 😢
+                                                    </>
+                                                )
+                                        }
+                                    </MDBCardTitle>
                                 </MDBCardFooter>
                                 <MDBCardFooter>
-                                    <MDBBtn style={{ padding: '8%' }} color="success" rounded> Contribute <MDBIcon fas size="lg" icon="hand-holding-usd" /> </MDBBtn>
+                                    <MDBBtn disabled={localStorage.getItem("userId") == campaignUserId} style={{ padding: '8%' }} onClick={redirect} color="success" rounded> Contribute <MDBIcon fas size="lg" icon="hand-holding-usd" /> </MDBBtn>
                                 </MDBCardFooter>
                                 <MDBCardFooter>
                                     <MDBCardTitle>Payment History</MDBCardTitle>
                                     <MDBCardText>
-                                        <MDBCard style={{ margin: '3%' }}>
-                                            <MDBCardHeader style={{ backgroundColor: 'rgba(0, 183, 74)', color: 'white' }}>2000-01-01</MDBCardHeader>
-                                            <MDBCardBody>
-                                                <MDBCardTitle><a className="text-dark" href={"/user/" + 10}>User</a></MDBCardTitle>
-                                                <MDBCardText> Payed: number + {campaign.currency} </MDBCardText>
-                                            </MDBCardBody>
-                                        </MDBCard>
-                                        <MDBCard style={{ margin: '3%' }}>
-                                            <MDBCardHeader style={{ backgroundColor: 'rgba(0, 183, 74)', color: 'white' }}>2000-01-01</MDBCardHeader>
-                                            <MDBCardBody>
-                                                <MDBCardTitle><a className="text-dark" href={"/user/" + 10}>User</a></MDBCardTitle>
-                                                <MDBCardText> Payed: number + {campaign.currency} </MDBCardText>
-                                            </MDBCardBody>
-                                        </MDBCard>
-                                        <MDBCard style={{ margin: '3%' }}>
-                                            <MDBCardHeader style={{ backgroundColor: 'rgba(0, 183, 74)', color: 'white' }}>2000-01-01</MDBCardHeader>
-                                            <MDBCardBody>
-                                                <MDBCardTitle><a className="text-dark" href={"/user/" + 10}>User</a></MDBCardTitle>
-                                                <MDBCardText> Payed: number + {campaign.currency} </MDBCardText>
-                                            </MDBCardBody>
-                                        </MDBCard>
+
+                                        {
+                                            payments.length !== 0
+                                                ? (
+                                                    payments.map(payment => (
+                                                        <PaymentCard key={payment.id} data={payment} />
+                                                    ))
+                                                )
+                                                : (
+                                                    <>
+                                                        Nothing here...
+                                                    </>
+                                                )
+                                        }
                                     </MDBCardText>
                                 </MDBCardFooter>
                             </MDBCardBody>

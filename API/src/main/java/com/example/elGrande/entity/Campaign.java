@@ -8,7 +8,9 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Currency;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -38,9 +40,23 @@ public class Campaign {
     @JsonIgnore
     private User user;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "campaigns_payments",
+            joinColumns = @JoinColumn(name = "campaign_id"),
+            inverseJoinColumns = @JoinColumn(name = "payment_id")
+    )
+    private Set<Payment> payments = new HashSet<>();
+
+
     public void addOpinion(Opinion opinion) {
         this.opinionList.add(opinion);
         opinion.setCampaign(this);
+    }
+
+    public void addPayment(Payment payment) {
+        this.payments.add(payment);
+        payment.getCampaigns().add(this);
     }
 
     public void removeOpinion(Opinion opinion) {
