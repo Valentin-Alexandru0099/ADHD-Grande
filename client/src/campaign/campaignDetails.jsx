@@ -35,6 +35,8 @@ export default function CampaignDetails() {
     const [currentValue, setCurrentValue] = useState();
     const [user, setUser] = useState();
     const [percent, setPercent] = useState(0);
+    const [payments, setPayments] = useState([]);
+    const [campaignUserId, setCampaingUserId] = useState();
 
 
 
@@ -42,6 +44,7 @@ export default function CampaignDetails() {
         await axios(BASE_API_URL + "campaigns/get-user-by-campaign/" + id)
             .then((response) => {
                 setUser(response.data);
+                setCampaingUserId(response.data.id);
             });
     }
 
@@ -82,6 +85,7 @@ export default function CampaignDetails() {
                 setOpinions(response.data.opinionList);
                 setTargetValue(response.data.targetValue.toLocaleString('en-US'));
                 setCurrentValue(response.data.currentValue.toLocaleString('en-US'));
+                setPayments(response.data.payments);
                 calculateDifference(response.data.targetValue, response.data.currentValue);
             });
     };
@@ -92,6 +96,7 @@ export default function CampaignDetails() {
         calculateDifference(campaign.targetValue, campaign.currentValue);
     }, []);
 
+    console.log(campaign)
     const paymentCardStyle = {
         width: '75%',
         textAlign: 'center',
@@ -176,10 +181,24 @@ export default function CampaignDetails() {
                                     </MDBProgress>
                                 </MDBCardText>
                                 <MDBCardFooter>
-                                    <MDBCardTitle><MDBIcon fas icon="chart-line" /> 10 Contributions</MDBCardTitle>
+                                    <MDBCardTitle>
+                                        {
+                                            payments.length !== 0
+                                                ? (
+                                                    <>
+                                                        <MDBIcon fas icon="chart-line" />  {payments.length} Contributions
+                                                    </>
+                                                )
+                                                : (
+                                                    <>
+                                                        No Contributions 😢
+                                                    </>
+                                                )
+                                        }
+                                    </MDBCardTitle>
                                 </MDBCardFooter>
                                 <MDBCardFooter>
-                                    <MDBBtn style={{ padding: '8%' }} onClick={redirect} color="success" rounded> Contribute <MDBIcon fas size="lg" icon="hand-holding-usd" /> </MDBBtn>
+                                    <MDBBtn disabled={localStorage.getItem("userId") == campaignUserId} style={{ padding: '8%' }} onClick={redirect} color="success" rounded> Contribute <MDBIcon fas size="lg" icon="hand-holding-usd" /> </MDBBtn>
                                 </MDBCardFooter>
                                 <MDBCardFooter>
                                     <MDBCardTitle>Payment History</MDBCardTitle>
