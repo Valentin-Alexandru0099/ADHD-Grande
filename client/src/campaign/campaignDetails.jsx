@@ -23,6 +23,7 @@ import {
 
 
 } from 'mdb-react-ui-kit';
+import PaymentCard from "../payment/paymentCard";
 
 
 export default function CampaignDetails() {
@@ -203,27 +204,20 @@ export default function CampaignDetails() {
                                 <MDBCardFooter>
                                     <MDBCardTitle>Payment History</MDBCardTitle>
                                     <MDBCardText>
-                                        <MDBCard style={{ margin: '3%' }}>
-                                            <MDBCardHeader style={{ backgroundColor: 'rgba(0, 183, 74)', color: 'white' }}>2000-01-01</MDBCardHeader>
-                                            <MDBCardBody>
-                                                <MDBCardTitle><a className="text-dark" href={"/user/" + 10}>User</a></MDBCardTitle>
-                                                <MDBCardText> Payed: number + {campaign.currency} </MDBCardText>
-                                            </MDBCardBody>
-                                        </MDBCard>
-                                        <MDBCard style={{ margin: '3%' }}>
-                                            <MDBCardHeader style={{ backgroundColor: 'rgba(0, 183, 74)', color: 'white' }}>2000-01-01</MDBCardHeader>
-                                            <MDBCardBody>
-                                                <MDBCardTitle><a className="text-dark" href={"/user/" + 10}>User</a></MDBCardTitle>
-                                                <MDBCardText> Payed: number + {campaign.currency} </MDBCardText>
-                                            </MDBCardBody>
-                                        </MDBCard>
-                                        <MDBCard style={{ margin: '3%' }}>
-                                            <MDBCardHeader style={{ backgroundColor: 'rgba(0, 183, 74)', color: 'white' }}>2000-01-01</MDBCardHeader>
-                                            <MDBCardBody>
-                                                <MDBCardTitle><a className="text-dark" href={"/user/" + 10}>User</a></MDBCardTitle>
-                                                <MDBCardText> Payed: number + {campaign.currency} </MDBCardText>
-                                            </MDBCardBody>
-                                        </MDBCard>
+
+                                        {
+                                            payments.length !== 0
+                                                ? (
+                                                    payments.map(payment => (
+                                                        <PaymentCard key={payment.id} data={payment} />
+                                                    ))
+                                                )
+                                                : (
+                                                    <>
+                                                        Nothing here...
+                                                    </>
+                                                )
+                                        }
                                     </MDBCardText>
                                 </MDBCardFooter>
                             </MDBCardBody>

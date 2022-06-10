@@ -2,9 +2,13 @@ package com.example.elGrande.controller;
 
 
 import com.example.elGrande.entity.Campaign;
+import com.example.elGrande.entity.Opinion;
 import com.example.elGrande.entity.Payment;
+import com.example.elGrande.entity.User;
 import com.example.elGrande.model.PaymentResponse;
+import com.example.elGrande.model.UserInfo;
 import com.example.elGrande.service.CampaignService;
+import com.example.elGrande.service.PaymentService;
 import com.example.elGrande.service.UserService;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
@@ -21,17 +25,17 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    CampaignService campaignService;
+    private CampaignService campaignService;
+
+    @Autowired
+    private PaymentService paymentService;
 
     @PostMapping(value = "create-payment-intent")
     public ResponseEntity<?> createPaymentIntent(@RequestBody Payment payment) throws StripeException {
         Stripe.apiKey = "sk_test_51L8sK5LlNBHeDk8KMqkuAHFgZ2HI9hMbBU6pOceqvBQkQxf4NCT7VbjC34BSNaSopjAU0qXOeK5X7WNLDytLbUIn00CZcPDYRV";
-        System.out.println(payment);
-        System.out.println(payment.getCurrency());
-        System.out.println(payment.getValue());
         PaymentIntentCreateParams params =
                 PaymentIntentCreateParams.builder()
                         .setAmount(payment.getValue().longValue())
@@ -56,6 +60,18 @@ public class PaymentController {
     public void addPayment(@RequestBody Payment payment, @PathVariable Long userId, @PathVariable Long campaignId) {
         Campaign campaign = campaignService.getCampaign(campaignId);
         userService.addPayment(payment, userId, campaign);
+    }
+
+    @GetMapping(value = "get-user-by-payment/{paymentId}")
+    public ResponseEntity<?> getUserForPayment(@PathVariable Long paymentId) {
+        Payment payment = paymentService.getPayment(paymentId);
+        User userObj = (User) userService.loadUserByUsername(payment.getUser().getUsername());
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(userObj.getId());
+        userInfo.setUsername(userObj.getUsername());
+
+        return ResponseEntity.ok(userInfo);
     }
 
 }
