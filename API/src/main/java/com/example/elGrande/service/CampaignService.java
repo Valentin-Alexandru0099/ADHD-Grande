@@ -1,7 +1,6 @@
 package com.example.elGrande.service;
 
 import com.example.elGrande.entity.Campaign;
-import com.example.elGrande.entity.Opinion;
 import com.example.elGrande.repository.CampaignRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -28,6 +29,9 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private String email;
+    private LocalDate submissionTime;
+    private String description;
+    private String phoneNumber;
     @ElementCollection(fetch = FetchType.EAGER)
     @JsonIgnore
     private List<String> roles = new ArrayList<>();
@@ -44,14 +48,14 @@ public class User implements UserDetails {
     @JsonIgnore
     private List<Opinion> opinionList;
 
-    public void addCampaign(Campaign campaign){
+    public void addCampaign(Campaign campaign) {
         campaignList.add(campaign);
         campaign.setUser(this);
     }
 
-    public void addOpinion(Long campaignId ,Opinion opinion){
-        for(Campaign campaign: campaignList){
-            if (Objects.equals(campaign.getId(), campaignId)){
+    public void addOpinion(Long campaignId, Opinion opinion) {
+        for (Campaign campaign : campaignList) {
+            if (Objects.equals(campaign.getId(), campaignId)) {
                 campaign.addOpinion(opinion);
                 opinion.setCampaign(campaign);
                 break;
@@ -68,6 +72,7 @@ public class User implements UserDetails {
                 ", email='" + email + '\'' +
                 '}';
     }
+
     @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

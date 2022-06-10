@@ -33,6 +33,7 @@ public class UserService implements UserDetailsService {
 
     public void addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setSubmissionTime(LocalDate.now());
         user.getRoles().add("ROLE_USER");
         userRepository.save(user);
     }

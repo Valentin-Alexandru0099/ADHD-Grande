@@ -26,7 +26,7 @@ export default function CampaignCard(props) {
   let navigate = useNavigate();
 
   function redirectTo() {
-    navigate("campaign/" + props.data.id)
+    navigate("/campaigns/campaign/" + props.data.id)
     window.scroll(0, 0);
   };
 

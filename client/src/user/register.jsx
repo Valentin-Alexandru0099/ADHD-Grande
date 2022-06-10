@@ -28,7 +28,7 @@ export default function RegisterForm() {
 
 
     async function register() {
-        await axios.post(BASE_API_URL + "users/register",)
+        await axios.post(BASE_API_URL + "users/register", formValues)
             .then(response => {
                 console.log(response);
             })

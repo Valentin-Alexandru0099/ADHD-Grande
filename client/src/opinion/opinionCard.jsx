@@ -85,7 +85,7 @@ export default function OpinionCard(props) {
     }, []);
 
     function updateOpinion() {
-        navigate("update-opinion/" + props.data.id)
+        navigate("/opinions/update-opinion/" + props.data.id)
     }
 
     const opinionHeaderStyle = {

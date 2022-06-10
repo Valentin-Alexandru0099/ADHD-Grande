@@ -70,6 +70,9 @@ public class UserController {
         userInfo.setEmail(userObj.getEmail());
         userInfo.setCampaignList(userObj.getCampaignList());
         userInfo.setOpinionList(userObj.getOpinionList());
+        userInfo.setSubmissionTime(userObj.getSubmissionTime());
+        userInfo.setDescription(userObj.getDescription());
+        userInfo.setPhoneNumber(userObj.getPhoneNumber());
 
         return ResponseEntity.ok(userInfo);
     }

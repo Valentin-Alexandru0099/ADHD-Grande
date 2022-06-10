@@ -85,9 +85,6 @@ function PageNavBar() {
                       <MDBDropdownLink href={"/user/" + localStorage.getItem("userId") + "/achievements"}>Achievements</MDBDropdownLink>
                     </MDBDropdownItem>
                     <MDBDropdownItem>
-                      <MDBDropdownLink href={"/user/" + localStorage.getItem("userId") + "/history"}>History</MDBDropdownLink>
-                    </MDBDropdownItem>
-                    <MDBDropdownItem>
                       <hr className='dropdown-divider' />
                     </MDBDropdownItem>
                     <MDBDropdownItem>
