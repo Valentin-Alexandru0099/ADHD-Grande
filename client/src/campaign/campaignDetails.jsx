@@ -100,7 +100,7 @@ export default function CampaignDetails() {
     };
 
     function redirect() {
-        navigate("payment?value=" + 1 + "&currency=" + campaign.currency);
+        navigate("payment?value=" + 1000 + "&currency=" + campaign.currency);
     };
 
     return (
