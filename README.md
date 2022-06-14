@@ -10,6 +10,8 @@
   <p> 🔵 User page is where all data about the specific user is showed: campaigns count, opinions count, when he/she registred to the platform and tabs to see what campaign does he/she have and what opinions did he/she shared.</p>
   <p> 🟢 The Donate page is where the user types all information about cards to pay for the campaign he landed from. <p>
   <p> 🔵 In the footer of this platform you will found the contact section, social media links and routes to about the platform. <p>
+  <p> 💯 You don't have to own a Computer to enjoy the beautiful User Interface because this platform is Responsive! 💯</p>
+  
   
   
   <hr>
