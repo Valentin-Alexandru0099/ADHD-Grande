@@ -29,3 +29,14 @@
 <div align="center" style="gap: 100px;">
   <p> 🖐️ Here are some pictures from the platform: 🖐️ </p>
 </div>
+  <img src=""/>
+  <img src="https://user-images.githubusercontent.com/86414654/173580459-2026d299-8309-49e5-99ee-e1040b50a2c9.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173579689-a0e584a2-74a5-401d-b34f-166664b3cdd6.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173580698-7cd6a0ec-f286-4435-b749-fff24406db66.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173580864-470125d9-00e7-4738-8667-5c555cb6521a.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173581026-b899685c-e402-45dd-9d34-97e242b2a3cc.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173581090-0a71447e-7eb1-4f0a-ba30-2aeec171a7d8.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173581186-da29089b-401d-46d3-a4e0-01c68c0fa3e3.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173581252-bfecc7a5-7679-4e1c-a9e9-d79968b29a07.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173581298-092ba9eb-05d9-4e13-bd66-49e336f6ddbf.png"/>
+  <img src="https://user-images.githubusercontent.com/86414654/173581336-0ab67256-1278-42c1-9ec0-e105c63359cd.png"/>
