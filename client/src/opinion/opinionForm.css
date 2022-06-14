@@ -1,0 +1,9 @@
+select.opinion-select{
+    width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+    select.opinion-select{
+        width: 100%;
+    }
+  }
