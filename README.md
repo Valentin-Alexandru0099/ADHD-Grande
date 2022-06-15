@@ -29,7 +29,6 @@
 <div align="center" style="gap: 100px;">
   <p> 🖐️ Here are some pictures from the platform: 🖐️ </p>
 </div>
-  <img src=""/>
   <img src="https://user-images.githubusercontent.com/86414654/173580459-2026d299-8309-49e5-99ee-e1040b50a2c9.png"/>
   <img src="https://user-images.githubusercontent.com/86414654/173579689-a0e584a2-74a5-401d-b34f-166664b3cdd6.png"/>
   <img src="https://user-images.githubusercontent.com/86414654/173580698-7cd6a0ec-f286-4435-b749-fff24406db66.png"/>
