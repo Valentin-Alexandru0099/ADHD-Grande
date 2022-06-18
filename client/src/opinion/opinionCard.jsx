@@ -28,12 +28,13 @@ import {
 export default function OpinionCard(props) {
 
     let navigate = useNavigate();
+    const [centredModal, setCentredModal] = useState(false);
+    const toggleShow = () => setBasicModal(!basicModal);
 
     const [user, setUser] = useState();
     const { id } = useParams();
     const [emoji, setEmoji] = useState();
     const [basicModal, setBasicModal] = useState(false);
-    const toggleShow = () => setBasicModal(!basicModal);
 
 
     async function handleDelete() {

@@ -20,7 +20,13 @@ import {
     MDBCol,
     MDBContainer,
     MDBIcon,
-
+    MDBModal,
+    MDBModalDialog,
+    MDBModalContent,
+    MDBModalHeader,
+    MDBModalTitle,
+    MDBModalBody,
+    MDBModalFooter,
 
 } from 'mdb-react-ui-kit';
 import PaymentCard from "../payment/paymentCard";
@@ -39,6 +45,8 @@ export default function CampaignDetails() {
     const [payments, setPayments] = useState([]);
     const [campaignUserId, setCampaingUserId] = useState();
 
+    const [centredModal, setCentredModal] = useState(false);
+    const toggleShow = () => setCentredModal(!centredModal);
 
 
     async function getUser() {
@@ -105,12 +113,35 @@ export default function CampaignDetails() {
         marginTop: '1%'
     };
 
-    function redirect() {
+    function redirectToPayment() {
         navigate("payment?value=" + 1000 + "&currency=" + campaign.currency);
     };
 
     return (
         <>
+            <MDBBtn onClick={toggleShow}>Vertically centered modal</MDBBtn>
+
+            <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
+                <MDBModalDialog centered>
+                    <MDBModalContent>
+                        <MDBModalHeader style={{ backgroundColor: 'rgb(57, 192, 237)', color: 'white' }}>
+                            <MDBModalTitle>Hold up!</MDBModalTitle>
+                            <MDBBtn className='btn-close' color='light' onClick={toggleShow}></MDBBtn>
+                        </MDBModalHeader>
+                        <MDBModalBody>
+                            <p>
+                                You are about to delete this campaign, are you sure ?
+                            </p>
+                        </MDBModalBody>
+                        <MDBModalFooter>
+                            <MDBBtn color='success' onClick={toggleShow}>
+                                NO!
+                            </MDBBtn>
+                            <MDBBtn color="danger" onClick={deleteCampaign}>Yes!</MDBBtn>
+                        </MDBModalFooter>
+                    </MDBModalContent>
+                </MDBModalDialog>
+            </MDBModal>
             <MDBContainer style={{ textAlign: 'center', marginTop: '1%', marginBottom: '1%' }}>
                 <MDBRow>
                     <MDBCol md='8'>
@@ -132,8 +163,8 @@ export default function CampaignDetails() {
                                                 {
                                                     user ? user.id == localStorage.getItem("userId") && (
                                                         <>
-                                                            <MDBBtn size="lg" rounded color='info' style={{ margin: '1%' }}>Update</MDBBtn>
-                                                            <MDBBtn size="lg" rounded color='danger' style={{ margin: '1%' }}>Delete</MDBBtn>
+                                                            <MDBBtn onClick={updateCampaign} size="lg" rounded color='info' style={{ margin: '1%' }}>Update</MDBBtn>
+                                                            <MDBBtn onClick={toggleShow} size="lg" rounded color='danger' style={{ margin: '1%' }}>Delete</MDBBtn>
                                                         </>
                                                     ) : (<></>)
                                                 }
