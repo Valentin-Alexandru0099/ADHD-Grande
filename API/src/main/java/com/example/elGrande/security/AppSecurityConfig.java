@@ -43,7 +43,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/users/user/*",
                         "/api/opinions/*",
                         "/api/payment/create-payment-intent",
-                        "/api/payment/add-payment/*/*",
+                        "/api/payment/add-payment/*/*/*",
                         "/api/payment/get-user-by-payment/*").permitAll()
 
                 )

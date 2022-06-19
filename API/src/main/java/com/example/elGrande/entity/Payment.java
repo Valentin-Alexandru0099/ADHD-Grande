@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Currency;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -31,7 +32,7 @@ public class Payment {
     @JsonIgnore
     private User user;
 
-    @ManyToMany(mappedBy = "payments")
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    private Set<Campaign> campaigns = new HashSet<>();
+    private Campaign campaign;
 }
