@@ -94,7 +94,7 @@ export default function CampaignDetails() {
                 setOpinions(response.data.opinionList);
                 setTargetValue(response.data.targetValue.toLocaleString('en-US'));
                 setCurrentValue(response.data.currentValue.toLocaleString('en-US'));
-                setPayments(response.data.payments);
+                setPayments(response.data.paymentList);
                 calculateDifference(response.data.targetValue, response.data.currentValue);
             });
     };
@@ -114,13 +114,11 @@ export default function CampaignDetails() {
     };
 
     function redirectToPayment() {
-        navigate("payment?value=" + 1000 + "&currency=" + campaign.currency);
+        navigate("payment?value=" + 1000 + "&currency=" + campaign.currency + "&campaignUserId=" + campaignUserId );
     };
 
     return (
         <>
-            <MDBBtn onClick={toggleShow}>Vertically centered modal</MDBBtn>
-
             <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
                 <MDBModalDialog centered>
                     <MDBModalContent>
@@ -230,7 +228,7 @@ export default function CampaignDetails() {
                                     </MDBCardTitle>
                                 </MDBCardFooter>
                                 <MDBCardFooter>
-                                    <MDBBtn disabled={localStorage.getItem("userId") == campaignUserId} style={{ padding: '8%' }} onClick={redirect} color="success" rounded> Contribute <MDBIcon fas size="lg" icon="hand-holding-usd" /> </MDBBtn>
+                                    <MDBBtn disabled={localStorage.getItem("userId") == campaignUserId} style={{ padding: '8%' }} onClick={redirectToPayment} color="success" rounded> Contribute <MDBIcon fas size="lg" icon="hand-holding-usd" /> </MDBBtn>
                                 </MDBCardFooter>
                                 <MDBCardFooter>
                                     <MDBCardTitle>Payment History</MDBCardTitle>

@@ -4,6 +4,7 @@ import com.example.elGrande.entity.Campaign;
 import com.example.elGrande.entity.Opinion;
 import com.example.elGrande.entity.Payment;
 import com.example.elGrande.entity.User;
+import com.example.elGrande.repository.CampaignRepository;
 import com.example.elGrande.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +27,10 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Autowired
+    private CampaignRepository campaignRepository;
+
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public Long getCount() {
@@ -39,13 +44,13 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public User getUser(Long id){
+    public User getUser(Long id) {
         Optional<User> user = userRepository.findById(id);
         return user.orElse(null);
 
     }
 
-    public void addCampaign(Campaign campaign, Long userId){
+    public void addCampaign(Campaign campaign, Long userId) {
         campaign.setSubmissionTime(LocalDate.now());
         campaign.setCurrentValue(BigDecimal.valueOf(0));
 
@@ -55,7 +60,7 @@ public class UserService implements UserDetailsService {
         userRepository.saveAndFlush(user);
     }
 
-    public void addOpinion(Opinion opinion,Long campaignId, Long userId, Long campaignUserId){
+    public void addOpinion(Opinion opinion, Long campaignId, Long userId, Long campaignUserId) {
         User opinionUser = getUser(userId);
         User campaignUser = getUser(campaignUserId);
 
@@ -65,13 +70,14 @@ public class UserService implements UserDetailsService {
         userRepository.saveAndFlush(campaignUser);
     }
 
-    public void addPayment(Payment payment, Long userId, Campaign campaign){
+    public void addPayment(Payment payment, Long userId, Long campaignId, Long campaignUserId) {
         User user = getUser(userId);
+        User campaignUser = getUser(campaignUserId);
 
+        payment.setUser(user);
         payment.setSubmissionTime(LocalDate.now());
 
-        campaign.addPayment(payment);
-        user.addPayment(payment);
+        campaignUser.addPayment(payment, campaignId);
         userRepository.saveAndFlush(user);
     }
 

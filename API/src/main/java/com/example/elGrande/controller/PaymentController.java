@@ -56,10 +56,12 @@ public class PaymentController {
         return ResponseEntity.ok(paymentResponse);
     }
 
-    @PostMapping(value = "add-payment/{userId}/{campaignId}")
-    public void addPayment(@RequestBody Payment payment, @PathVariable Long userId, @PathVariable Long campaignId) {
-        Campaign campaign = campaignService.getCampaign(campaignId);
-        userService.addPayment(payment, userId, campaign);
+    @PostMapping(value = "add-payment/{userId}/{campaignId}/{campaignUserId}")
+    public void addPayment(@RequestBody Payment payment
+            , @PathVariable Long userId
+            , @PathVariable Long campaignId
+            , @PathVariable Long campaignUserId) {
+        userService.addPayment(payment, userId, campaignId, campaignUserId);
     }
 
     @GetMapping(value = "get-user-by-payment/{paymentId}")

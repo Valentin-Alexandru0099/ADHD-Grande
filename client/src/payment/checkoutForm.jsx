@@ -12,6 +12,9 @@ import {
     MDBCardHeader,
 } from "mdb-react-ui-kit";
 import { useParams } from "react-router";
+import { BASE_API_URL } from "../App";
+import axios from "axios";
+
 
 export default function CheckoutForm() {
     const stripe = useStripe();
@@ -65,15 +68,13 @@ export default function CheckoutForm() {
         }
 
         setIsLoading(true);
-
+        addPayment();
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
                 // Make sure to change this to your payment completion page
                 return_url: "http://localhost:3000/campaigns/campaign/"
-                    + id + "/" +
-                    queryParams.get("value") + "/" +
-                    queryParams.get("currency"),
+                    + id,
             },
         });
         // This point will only be reached if there is an immediate error when
@@ -88,6 +89,19 @@ export default function CheckoutForm() {
         }
 
         setIsLoading(false);
+    };
+
+    async function addPayment() {
+        await axios.post(BASE_API_URL +
+            "payment/add-payment/" +
+            localStorage.getItem("userId") +
+            "/" + id +
+            "/" + queryParams.get("campaignUserId"),
+
+            {
+                value: queryParams.get("value"),
+                currency: queryParams.get("currency"),
+            });
     };
 
     return (

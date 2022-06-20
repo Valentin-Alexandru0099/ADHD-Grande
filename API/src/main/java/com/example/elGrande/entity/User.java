@@ -59,17 +59,23 @@ public class User implements UserDetails {
         campaign.setUser(this);
     }
 
-    public void addPayment(Payment payment) {
-        paymentList.add(payment);
-        payment.setUser(this);
-    }
-
 
     public void addOpinion(Long campaignId, Opinion opinion) {
         for (Campaign campaign : campaignList) {
             if (Objects.equals(campaign.getId(), campaignId)) {
                 campaign.addOpinion(opinion);
                 opinion.setCampaign(campaign);
+                break;
+            }
+        }
+    }
+
+
+    public void addPayment(Payment payment, Long campaignId){
+        for (Campaign campaign : campaignList) {
+            if (Objects.equals(campaign.getId(), campaignId)) {
+                campaign.addPayment(payment);
+                payment.setCampaign(campaign);
                 break;
             }
         }

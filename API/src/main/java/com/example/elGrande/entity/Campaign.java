@@ -7,10 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Currency;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -40,13 +37,10 @@ public class Campaign {
     @JsonIgnore
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "campaigns_payments",
-            joinColumns = @JoinColumn(name = "campaign_id"),
-            inverseJoinColumns = @JoinColumn(name = "payment_id")
-    )
-    private Set<Payment> payments = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "campaign",
+            orphanRemoval = true)
+    private List<Payment> paymentList = new ArrayList<>();
 
 
     public void addOpinion(Opinion opinion) {
@@ -54,14 +48,14 @@ public class Campaign {
         opinion.setCampaign(this);
     }
 
-    public void addPayment(Payment payment) {
-        this.payments.add(payment);
-        payment.getCampaigns().add(this);
-    }
-
     public void removeOpinion(Opinion opinion) {
         opinionList.remove(opinion);
         opinion.setCampaign(null);
+    }
+
+    public void addPayment(Payment payment){
+        paymentList.add(payment);
+        payment.setCampaign(this);
     }
 
     @Override
