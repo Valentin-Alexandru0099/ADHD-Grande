@@ -76,6 +76,7 @@ public class User implements UserDetails {
             if (Objects.equals(campaign.getId(), campaignId)) {
                 campaign.addPayment(payment);
                 payment.setCampaign(campaign);
+                campaign.setCurrentValue(campaign.getCurrentValue().add(payment.getValue()));
                 break;
             }
         }
