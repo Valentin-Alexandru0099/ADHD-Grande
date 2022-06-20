@@ -114,7 +114,7 @@ export default function CampaignDetails() {
     };
 
     function redirectToPayment() {
-        navigate("payment?value=" + 1000 + "&currency=" + campaign.currency + "&campaignUserId=" + campaignUserId );
+        navigate("payment?value=" + 1000 + "&currency=" + campaign.currency + "&campaignUserId=" + campaignUserId);
     };
 
     return (
@@ -228,7 +228,11 @@ export default function CampaignDetails() {
                                     </MDBCardTitle>
                                 </MDBCardFooter>
                                 <MDBCardFooter>
-                                    <MDBBtn disabled={localStorage.getItem("userId") == campaignUserId} style={{ padding: '8%' }} onClick={redirectToPayment} color="success" rounded> Contribute <MDBIcon fas size="lg" icon="hand-holding-usd" /> </MDBBtn>
+                                    <MDBBtn disabled=
+                                        {(localStorage.getItem("userId") == campaignUserId) || (currentValue >= targetValue)}
+                                        style={{ padding: '8%' }} onClick={redirectToPayment}
+                                        color="success"
+                                        rounded> Contribute <MDBIcon fas size="lg" icon="hand-holding-usd" /> </MDBBtn>
                                 </MDBCardFooter>
                                 <MDBCardFooter>
                                     <MDBCardTitle>Payment History</MDBCardTitle>
