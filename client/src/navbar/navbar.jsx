@@ -22,7 +22,6 @@ import {
 } from 'mdb-react-ui-kit';
 
 function PageNavBar({ activeUser }) {
-  console.log(activeUser);
   function logout() {
     localStorage.clear();
   };
@@ -76,7 +75,7 @@ function PageNavBar({ activeUser }) {
             {
               localStorage.getItem("userId")
                 ? (<><MDBDropdown group className='shadow-0'>
-                  <MDBDropdownToggle rounded color='light'><i className='fa fa-user'></i>  Hi! {activeUser}</MDBDropdownToggle>
+                  <MDBDropdownToggle rounded color='light'><i className='fa fa-user'></i>  Hi! {activeUser ? activeUser : localStorage.getItem("username")}</MDBDropdownToggle>
                   <MDBDropdownMenu>
                     <MDBDropdownItem>
                       <MDBDropdownLink href={"/user/" + localStorage.getItem("userId")}>User Page</MDBDropdownLink>
