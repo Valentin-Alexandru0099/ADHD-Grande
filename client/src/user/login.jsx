@@ -15,7 +15,7 @@ import './login-register.css';
 import { toast } from "react-toastify";
 import { useState } from "react";
 
-export default function LoginForm() {
+export default function LoginForm({ setActiveUser }) {
 
     let navigate = useNavigate();
 
@@ -50,8 +50,10 @@ export default function LoginForm() {
         }));
     };
 
-    function redirect(status) {
+    function redirect(status, username) {
         if (status === 200) {
+            console.log(username);
+            setActiveUser(username);
             navigate("/");
         };
     };
@@ -79,7 +81,7 @@ export default function LoginForm() {
                     draggable: true,
                     progress: undefined,
                 })
-                redirect(response.status);
+                redirect(response.status, response.data.username);
             })
             .catch(function (error) {
                 toast.error('Something went wrong, please try again!', {

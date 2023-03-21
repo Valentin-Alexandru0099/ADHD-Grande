@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router";
 import { BrowserRouter } from "react-router-dom";
+import { useState } from "react";
 import PageNavBar from './navbar/navbar';
 import PageFooter from './footer/footer';
 import Home from './home/home';
@@ -23,10 +24,11 @@ export const BASE_API_URL = "http://localhost:8080/api/";
 
 function App() {
   AOS.init();
+  const [activeUser, setActiveUser] = useState("")
 
   return (
     <div className="App">
-      <PageNavBar />
+      <PageNavBar activeUser={activeUser} />
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -50,7 +52,7 @@ function App() {
           <Route path="/campaigns/campaign/:id/add-opinion" element={<OpinionForm update={false} />} />
           <Route path="/opinions/update-opinion/:opinionId" element={<OpinionForm update={true} />} />
           <Route path="/register" element={<RegisterForm />} />
-          <Route path="/login" element={<LoginForm />} />
+          <Route path="/login" element={<LoginForm setActiveUser={setActiveUser} />} />
           <Route path="/user/:id" element={<UserPage />} />
           <Route path="/campaigns/campaign/:id/payment" element={<PaymentPage />} />
 
